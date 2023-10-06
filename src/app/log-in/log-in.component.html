@@ -1,0 +1,36 @@
+<form class="container p-5 mt-5 " (ngSubmit)="logInSubmit(logInForm)" [formGroup]="logInForm">
+
+    <!-- loading spiner -->
+    <div *ngIf="loading" id="loading" class="justify-content-center align-items-center">
+        <span class="loader"></span>
+    </div>
+    <!-- loading spiner -->
+
+    <h2 class="mb-4">log in now :</h2>
+
+    <h2 class="text-success text-center">{{errorMessage}}</h2>
+
+    <div>
+        <label class=" my-3" for="email">email :</label>
+        <input class="form-control" type="email" id="email" formControlName="email">
+        <div class="bg-success text-white p-2 rounded mt-1"
+            *ngIf="logInForm.get('email')?.errors&& logInForm.get('email')?.touched">
+            <p *ngIf="logInForm.get('email')?.errors?.['required']">input is required</p>
+            <p *ngIf="logInForm.get('email')?.errors?.['email']">enter valid email</p>
+        </div>
+    </div>
+    <div>
+        <label class="my-3" for=" password">password :</label>
+        <input class="form-control" type="text" id="password" formControlName="password">
+        <div class="bg-success text-white p-2 rounded mt-1"
+            *ngIf="logInForm.get('password')?.errors&& logInForm.get('password')?.touched">
+            <p *ngIf="logInForm.get('password')?.errors?.['required']">input is required</p>
+            <p *ngIf="logInForm.get('password')?.errors?.['pattern']">enter valid password Ex : sHehab123 </p>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <p class="cursor-pointer" routerLink="/forgetPassword">forget your password ? </p>
+        <button type="submit" [disabled]="logInForm.invalid" class="btn btn-success">log in</button>
+    </div>
+</form>

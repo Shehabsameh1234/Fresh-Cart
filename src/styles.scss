@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+
+body{
+    text-transform: capitalize;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    cursor: pointer;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.form-control:focus {
+  border-color:rgb(38, 191, 38);
+  box-shadow: 0 0 0 .25rem transparent;
+}
+
+// loading
+#loading{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 5555555555555555555555555555555555555555555555555555555878484848;
+    background-color: rgba(0, 0, 0, 0.484);
+    display: flex;
+}
+.loader{
+    font-size: 48px;
+    color: #FFF;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    position: relative;
+  }
+  .loader:after{
+    content: 'Loading';
+    position: relative;
+    z-index: 5;
+  }
+  .loader:before{
+    content: '';
+    height: 6px;
+    border: 1px solid;
+    border-radius: 10px;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    background: linear-gradient(#73c079 100%, transparent 0) no-repeat;
+    background-size: 0% auto;
+    animation: 10s lineGrow linear infinite;
+  }
+
+  @keyframes lineGrow {to {  background-size: 100% auto}}
+// loading
+
+
