@@ -18,6 +18,10 @@ export class ProductsService {
     return this._HttpClient.get(`${this.baseUrl}/api/v1/products`)
   }
 
+  getSpecProducts(productId:string): Observable<any> {
+    return this._HttpClient.get(`${this.baseUrl}/api/v1/products/${productId}`)
+  }
+
 
 }
 

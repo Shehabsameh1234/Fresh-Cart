@@ -14,7 +14,7 @@ import { routeguardGuard } from './routeguard.guard';
 const routes: Routes = [
   {path:"home",canActivate:[routeguardGuard],component:HomeComponent},
   {path:"cart",canActivate:[routeguardGuard],component:CartComponent},
-  {path:"products",canActivate:[routeguardGuard],component:ProductsComponent},
+  {path:"products/:id",canActivate:[routeguardGuard],component:ProductsComponent},
   {path:"categories",canActivate:[routeguardGuard],component:CategoriesComponent},
   {path:"brands",canActivate:[routeguardGuard],component:BrandsComponent},
   {path:"logIn",component:LogInComponent},

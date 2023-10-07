@@ -17,6 +17,7 @@ export class HomeComponent {
   allProducts!: products[]
   loading:boolean=true
   loaded:boolean=false
+  
 
   constructor(private _Router: Router, private _ProductsService: ProductsService) { 
      $(document).ready(function(){
@@ -40,25 +41,22 @@ export class HomeComponent {
   });
 
 
-
-
- 
-
-
   }
 
   ngOnInit(): void {
     localStorage.setItem("currentPage", "/home")
     this._ProductsService.getAllProducts().subscribe({
       next: (res) => {
-        console.log(res.data)
+       
         this.allProducts=res.data
         this.loaded=true
         this.loading=false
+      
       },
       error: (error) => {
-        console.log(error);
-        this.loading=false
+       
+        this.loading=true
+      
       }
     })
   }
