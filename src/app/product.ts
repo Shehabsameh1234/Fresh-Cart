@@ -15,6 +15,7 @@ export interface products {
     description: string;
     image: string;
     name: string;
+    heart: boolean;
     quantity: number;
     price: number;
     imageCover: string;

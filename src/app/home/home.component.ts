@@ -18,6 +18,11 @@ export class HomeComponent {
   allProducts!: products[]
   loading: boolean = true
   loaded: boolean = false
+  allId: string[] = []
+  whishId: string[] = []
+  i!: number;
+  intersection:string[]=[]
+  heart:boolean=true
 
   constructor(private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService) {
     $(document).ready(function () {
@@ -48,11 +53,44 @@ export class HomeComponent {
         this.allProducts = res.data
         this.loaded = true
         this.loading = false
+
+        // res.data.forEach((values: any) => {
+        //   this.allId.push(values._id)
+        // })
+      
+
+        // this._WishListService.getUserWishList().subscribe({
+        //   next: (res) => {
+        //     res.data.forEach((values: any) => {
+        //       this.whishId.push(values._id)
+        //     })
+        //     console.log(this.whishId); 
+        //      console.log(this.allId);
+
+        //      this.whishId.forEach( array1Ttem => {
+        //       this.allId.forEach( array2Item => {
+        //          if(array1Ttem == array2Item){
+        //          this.heart=true;
+        //         }
+        //         else{
+                  
+        //         }
+        
+        //       })
+        //     })
+        //   }, 
+          
+        // })
+
+       
       },
       error: (error) => {
         this.loading = true
       }
     })
+
+
+
   }
 
   wishListAddAndRemove(pId: string, event: any) {
@@ -68,7 +106,7 @@ export class HomeComponent {
         next: (res) => {
           alert("added")
           event.target.style.color = "red";
-         
+
         }
       })
     }
@@ -90,6 +128,10 @@ export class HomeComponent {
 
 
 }
+
+
+
+
 
 
 
