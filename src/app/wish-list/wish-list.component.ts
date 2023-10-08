@@ -10,7 +10,9 @@ import { products } from '../product';
 })
 export class WishListComponent {
 
-
+  emptyList: boolean = false
+  loading: boolean = true
+  loaded: boolean = false
 
   allProductsWishList!: products[]
   constructor(private _WishListService: WishListService) {
@@ -22,14 +24,20 @@ export class WishListComponent {
     this._WishListService.getUserWishList().subscribe({
       next: (res) => {
         console.log(res.data);
+        this.loaded = true
+        this.loading = false
         this.allProductsWishList = res.data
+        if (res.data.length == 0) {
+         this.emptyList=true
+        }
       },
       error: (error) => {
         console.log(error);
+        this.loading = true
       }
     })
   }
-  
+
   deletItem(pId: string) {
     this._WishListService.deleteItemWishList(pId).subscribe({
       next: (res) => {
@@ -38,6 +46,9 @@ export class WishListComponent {
           next: (res) => {
             console.log(res.data);
             this.allProductsWishList = res.data
+            if (res.data.length == 0) {
+              this.emptyList=true
+             }
           },
           error: (error) => {
             console.log(error);

@@ -17,6 +17,7 @@ export class ProductsComponent {
   productImg2!: []
   product!: products
 
+
   constructor(private _ActivatedRoute: ActivatedRoute, private _ProductsService: ProductsService,private _WishListService:WishListService) {
 
 
@@ -53,24 +54,27 @@ export class ProductsComponent {
           this.productImg2 = this.productImg1
         }
       },
-      error: (error) => { }
+    
     })
   }
 
 
-  wishList(pId: string, event: any) {
-    this._WishListService.addToWishList(pId).subscribe({
-      next: (res) => {
-        console.log(res);
-        let list = event.target.classList;
-        list.add("text-danger");
-        alert("added")
-        
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    })
+  wishListAddAndRemove(pId: string, event: any) {
+    if (event.target.style.color == "red") {
+      this._WishListService.deleteItemWishList(pId).subscribe({
+        next: (res) => {
+          alert("deleted")
+          event.target.style.color = "black";
+        }
+      })
+    }else {
+      this._WishListService.addToWishList(pId).subscribe({
+        next: (res) => {
+          alert("added")
+          event.target.style.color = "red";
+        }
+      })
+    }
   }
 
 

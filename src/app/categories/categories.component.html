@@ -1,5 +1,23 @@
 <section class="container p-5 mt-5">
-    <div class="row text-center">
+
+
+
+    <div *ngIf="loading" class="row text-center">
+        <div  *ngFor="let _ of [].constructor(10)" class="col-md-6 col-12 col-lg-4 my-4  ">
+            <div class="px-2 py-4 p-md-4 p-lg-4 ">
+                <span class="loader2 d-inline-block"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div *ngIf="loaded" class="row text-center">
         <div class="col-md-6 col-12 col-lg-4 my-4  " *ngFor="let category of allCategories">
             <div class="shadow px-2 py-4 p-md-4 p-lg-4 ">
               <img [src]="category.image" alt="" class="w-100">

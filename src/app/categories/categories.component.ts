@@ -9,6 +9,8 @@ import { products } from '../product';
 export class CategoriesComponent {
 
   allCategories!: products[]
+  loading: boolean = true
+  loaded: boolean = false
   constructor(private _CategoriesService: CategoriesService) {
 
   }
@@ -19,9 +21,12 @@ export class CategoriesComponent {
       next: (res) => {
         console.log(res.data[0].image);
         this.allCategories=res.data
+        this.loaded = true
+        this.loading = false
       },
       error: (error) => {
         console.log(error);
+        this.loading = true
       }
     })
 

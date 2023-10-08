@@ -15,15 +15,9 @@ declare let $: any
 })
 export class HomeComponent {
 
-
-
   allProducts!: products[]
   loading: boolean = true
   loaded: boolean = false
-
-
-
-
 
   constructor(private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService) {
     $(document).ready(function () {
@@ -45,22 +39,15 @@ export class HomeComponent {
         }
       );
     });
-
-
   }
 
   ngOnInit(): void {
-
-
-
-
     localStorage.setItem("currentPage", "/home")
     this._ProductsService.getAllProducts().subscribe({
       next: (res) => {
         this.allProducts = res.data
         this.loaded = true
         this.loading = false
-     
       },
       error: (error) => {
         this.loading = true
@@ -68,42 +55,33 @@ export class HomeComponent {
     })
   }
 
-
-
-  wishListadd(pId: string, event: any) {
-    this._WishListService.addToWishList(pId).subscribe({
-      next: (res) => {
-        console.log(res);
-       
-        alert("added")
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    })
+  wishListAddAndRemove(pId: string, event: any) {
+    if (event.target.style.color == "red") {
+      this._WishListService.deleteItemWishList(pId).subscribe({
+        next: (res) => {
+          alert("deleted")
+          event.target.style.color = "black";
+        }
+      })
+    } else {
+      this._WishListService.addToWishList(pId).subscribe({
+        next: (res) => {
+          alert("added")
+          event.target.style.color = "red";
+         
+        }
+      })
+    }
   }
-  wishListDelete(pId: string, event: any) {
-    this._WishListService.deleteItemWishList(pId).subscribe({
-      next: (res) => {
-        console.log(res.data);
-        this._WishListService.getUserWishList().subscribe({
-          next: (res) => {
-            console.log(res.data);
-          },
-          error: (error) => {
-            console.log(error);
-          }
-        })
-        alert("deleted")
-        
 
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    })
 
-  }
+
+
+
+
+
+
+
 
 
 

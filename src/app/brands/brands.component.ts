@@ -15,6 +15,8 @@ export class BrandsComponent {
 
 
   allBrands!:products[]
+  loading: boolean = true
+  loaded: boolean = false
 
 
   constructor(private _BrandsService: BrandsService) {
@@ -26,11 +28,14 @@ export class BrandsComponent {
 
     this._BrandsService.getAllBrands().subscribe({
       next: (res) => {
-        console.log(res);
+        console.log(res.data.length);
         this.allBrands=res.data
+        this.loaded = true
+        this.loading = false
       },
       error: (error) => {
         console.log(error);
+        this.loading = true
       }
     })
 

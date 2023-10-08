@@ -1,6 +1,5 @@
 <section class="mt-5 p-5 container">
-
-    <div  class="row align-items-center ">
+    <div   class="row align-items-center ">
         <div class="col-lg-4 col-md-6 col-12">
             <div class="owl-carousel owl-theme ">
                 <div class="item">
@@ -20,7 +19,7 @@
                 <p class="text-muted">{{product.description}}</p>
                 <div class="d-flex justify-content-between mt-3">
                     <span>{{product.price}} EGP</span>
-                    <span class=" text-start"><i (click)="wishList(product._id,$event)" class="fa-solid font-size cursor-pointer fa-heart"></i></span>
+                    <span class=" text-start"><i (click)="wishListAddAndRemove(product._id,$event)" class="fa-solid font-size cursor-pointer fa-heart"></i></span>
                     <span>{{product.ratingsAverage}} <i class="fa-solid fa-star text-warning"></i></span>
                 </div>
                 <button class="btn btn-success mt-3 w-100 d-block">add to cart</button>

@@ -1,24 +1,43 @@
 
 <section class="container p-5 mt-5">
 
+
+
+
+
+
 <h2 class="text-success text-center">my wish list</h2>
 
-<div *ngFor="let p of allProductsWishList" class="row shadow p-3 mt-4 align-items-center text-center ">
-    <div class="col-md-2 col-12" >
-        <img [src]="p.imageCover" alt="" class="w-100">
+<div *ngIf="loading" class="row text-center">
+    <div  *ngFor="let _ of [].constructor(5)" class="col-12 hhh  ">
+        <div class="px-2 py-4 p-md-4 p-lg-4 ">
+            <span class="loader2 d-inline-block"></span>
+        </div>
     </div>
-    <div class="col-md-2 col-12" >
-        
-        <p>{{p.title}}</p>
-        <h6 class="text-success">{{p.price}} EGP</h6>
-       <div  (click)="deletItem(p._id)" class="cursor-pointer">
-        <i class="fa-solid fa-trash text-danger"></i>
-        <span class="text-danger "> remove</span>
+</div>
 
-       </div>
-    </div>
-    <div class="col-md-3 col-12 offset-md-5" >
-        <button class="btn btn-outline-success mt-3 w-75 m-auto d-block">add to cart</button>
+
+
+<h3 *ngIf="emptyList" class="text-danger text-center mt-5" >your list is empty</h3>
+
+<div *ngIf="loaded">
+    <div  *ngFor="let p of allProductsWishList" class="row shadow p-3 mt-4 align-items-center text-center ">
+        <div class="col-md-2 col-12" >
+            <img [src]="p.imageCover" alt="" class="w-100">
+        </div>
+        <div class="col-md-2 col-12" >
+            
+            <p>{{p.title}}</p>
+            <h6 class="text-success">{{p.price}} EGP</h6>
+           <div  (click)="deletItem(p._id)" class="cursor-pointer">
+            <i class="fa-solid fa-trash text-danger"></i>
+            <span class="text-danger "> remove</span>
+    
+           </div>
+        </div>
+        <div class="col-md-3 col-12 offset-md-5" >
+            <button class="btn btn-outline-success mt-3 w-75 m-auto d-block">add to cart</button>
+        </div>
     </div>
 </div>
 
