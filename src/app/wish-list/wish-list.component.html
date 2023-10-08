@@ -9,11 +9,11 @@
     </div>
     <div class="col-md-2 col-12" >
         
-        <p>{{p.title.slice(0,20)}}</p>
+        <p>{{p.title}}</p>
         <h6 class="text-success">{{p.price}} EGP</h6>
-       <div>
+       <div  (click)="deletItem(p._id)" class="cursor-pointer">
         <i class="fa-solid fa-trash text-danger"></i>
-        <span class="text-danger"> remove</span>
+        <span class="text-danger "> remove</span>
 
        </div>
     </div>

@@ -1,23 +1,5 @@
 
-
-
-
-
-
-
-
-
-
-
-
 <section class="container p-5 mt-5">
-
-
-
-
-   
-
-
 
      <div class="owl-carousel owl-theme ">
         <div class="item">
@@ -49,7 +31,7 @@
             <h5 class="text-center">mobiles</h5>
         </div>
         <div class="item">
-            <img class="rounded img-cursoul " src="assets/img/laptop.jpg" alt="Electronics">
+            <img class="rounded img-cursoul " src="assets/img/lapTop.jpg" alt="Electronics">
             <h5 class="text-center">Electronics</h5>
         </div>
     </div> 
@@ -58,9 +40,6 @@
         <input type="text" class="form-control" placeholder="search here">
     </div>
 
-
-
- 
     <div *ngIf="loading" class="row text-center">
         <div  *ngFor="let _ of [].constructor(40)" class="col-md-6 col-12 col-lg-3 my-4  ">
             <div class="px-2 py-4 p-md-4 p-lg-4 ">
@@ -81,7 +60,8 @@
                        </div>
                         <div class="d-flex justify-content-between mt-2">
                             <p class=" text-start">{{product.price}}EGP</p>
-                            <p class=" text-start"><i (click)="wishList(product._id,$event)"  class="fa-solid font-size cursor-pointer fa-heart"></i></p>
+                            <p class=" text-start"><i (click)="wishListadd(product._id,$event)"    class="fa-solid font-size cursor-pointer fa-heart"></i></p>
+                            <p class=" text-start"><i (click)="wishListDelete(product._id,$event)"   class="fa-solid  font-size cursor-pointer fa-heart text-danger"></i></p>
                             <p class=" text-start">{{product.ratingsAverage}}<i
                                     class="fa-solid fa-star text-warning"></i>
                             </p>

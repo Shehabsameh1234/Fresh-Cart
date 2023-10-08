@@ -11,7 +11,7 @@ export class ProductsService {
   baseUrl: string = "https://ecommerce.routemisr.com";
 
 
-  constructor(private _HttpClient: HttpClient, private _Router: Router) { }
+  constructor(private _HttpClient: HttpClient) { }
 
 
   getAllProducts(): Observable<any> {

@@ -19,20 +19,37 @@ export class WishListComponent {
 
   ngOnInit(): void {
     localStorage.setItem("currentPage", "/wishList")
-
-
     this._WishListService.getUserWishList().subscribe({
-      next:(res)=>{
-        
+      next: (res) => {
         console.log(res.data);
-
-        this.allProductsWishList=res.data
+        this.allProductsWishList = res.data
       },
-      error:(error)=>{console.log(error);
+      error: (error) => {
+        console.log(error);
       }
     })
+  }
+  
+  deletItem(pId: string) {
+    this._WishListService.deleteItemWishList(pId).subscribe({
+      next: (res) => {
+        console.log(res.data);
+        this._WishListService.getUserWishList().subscribe({
+          next: (res) => {
+            console.log(res.data);
+            this.allProductsWishList = res.data
+          },
+          error: (error) => {
+            console.log(error);
+          }
+        })
+        alert("deleted")
 
-
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
 
   }
 

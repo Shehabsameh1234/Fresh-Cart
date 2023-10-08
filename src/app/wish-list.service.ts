@@ -27,8 +27,15 @@ export class WishListService {
       headers: this.header
     })
   }
+
   getUserWishList(): Observable<any> {
     return this._HttpClient.get(this.baseUrl + "/api/v1/wishlist", {
+      headers: this.header
+    })
+  }
+
+  deleteItemWishList(pId:string): Observable<any> {
+    return this._HttpClient.delete(`${this.baseUrl}/api/v1/wishlist/${pId}`, {
       headers: this.header
     })
   }

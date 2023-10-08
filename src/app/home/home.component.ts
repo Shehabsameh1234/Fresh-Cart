@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { products } from '../product';
 import { WishListService } from '../wish-list.service';
 
+
 declare let $: any
 
 
@@ -19,6 +20,7 @@ export class HomeComponent {
   allProducts!: products[]
   loading: boolean = true
   loaded: boolean = false
+
 
 
 
@@ -48,12 +50,17 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
+
+
+
+
     localStorage.setItem("currentPage", "/home")
     this._ProductsService.getAllProducts().subscribe({
       next: (res) => {
         this.allProducts = res.data
         this.loaded = true
         this.loading = false
+     
       },
       error: (error) => {
         this.loading = true
@@ -63,20 +70,44 @@ export class HomeComponent {
 
 
 
-  wishList(pId: string, event: any) {
+  wishListadd(pId: string, event: any) {
     this._WishListService.addToWishList(pId).subscribe({
       next: (res) => {
         console.log(res);
-        let list = event.target.classList;
-        list.add("text-danger");
+       
         alert("added")
-        
       },
       error: (error) => {
         console.log(error);
       }
     })
   }
+  wishListDelete(pId: string, event: any) {
+    this._WishListService.deleteItemWishList(pId).subscribe({
+      next: (res) => {
+        console.log(res.data);
+        this._WishListService.getUserWishList().subscribe({
+          next: (res) => {
+            console.log(res.data);
+          },
+          error: (error) => {
+            console.log(error);
+          }
+        })
+        alert("deleted")
+        
+
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+
+  }
+
+
+
+
 
 
 
