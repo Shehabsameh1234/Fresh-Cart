@@ -22,8 +22,7 @@ export class ProductsComponent {
     $(document).ready(function(){
       $(".owl-carousel").owlCarousel(
         {
-          loop:true,
-          margin:0,
+          
           responsive:{
               0:{
                   items:1
@@ -38,10 +37,6 @@ export class ProductsComponent {
       }
       );
     });
-  
-
-
-
   }
 
   ngOnInit(): void {
