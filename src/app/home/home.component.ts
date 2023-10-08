@@ -64,9 +64,6 @@ export class HomeComponent {
 
 
   wishList(pId: string, event: any) {
-
- 
-
     this._WishListService.addToWishList(pId).subscribe({
       next: (res) => {
         console.log(res);

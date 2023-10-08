@@ -20,7 +20,7 @@
                 <p class="text-muted">{{product.description}}</p>
                 <div class="d-flex justify-content-between mt-3">
                     <span>{{product.price}} EGP</span>
-                    <span class=" text-start"><i class="fa-solid font-size cursor-pointer fa-heart"></i></span>
+                    <span class=" text-start"><i (click)="wishList(product._id,$event)" class="fa-solid font-size cursor-pointer fa-heart"></i></span>
                     <span>{{product.ratingsAverage}} <i class="fa-solid fa-star text-warning"></i></span>
                 </div>
                 <button class="btn btn-success mt-3 w-100 d-block">add to cart</button>

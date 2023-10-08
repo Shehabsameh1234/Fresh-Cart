@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../products.service';
 import { products } from '../product';
+import { WishListService } from '../wish-list.service';
 declare let $: any
 @Component({
   selector: 'app-products',
@@ -16,7 +17,7 @@ export class ProductsComponent {
   productImg2!: []
   product!: products
 
-  constructor(private _ActivatedRoute: ActivatedRoute, private _ProductsService: ProductsService) {
+  constructor(private _ActivatedRoute: ActivatedRoute, private _ProductsService: ProductsService,private _WishListService:WishListService) {
 
 
     $(document).ready(function () {
@@ -55,6 +56,27 @@ export class ProductsComponent {
       error: (error) => { }
     })
   }
+
+
+  wishList(pId: string, event: any) {
+    this._WishListService.addToWishList(pId).subscribe({
+      next: (res) => {
+        console.log(res);
+        let list = event.target.classList;
+        list.add("text-danger");
+        alert("added")
+        
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+
+
+
+
+
 }
 
 
