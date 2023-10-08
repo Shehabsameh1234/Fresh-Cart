@@ -22,5 +22,13 @@ export interface resetData {
 }
 
 
+export interface productId{
+    productId:string
+}
+
+
+
+
+
 
 

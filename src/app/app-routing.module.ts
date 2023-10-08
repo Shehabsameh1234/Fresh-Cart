@@ -10,10 +10,12 @@ import { registerLocaleData } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { routeguardGuard } from './routeguard.guard';
+import { WishListComponent } from './wish-list/wish-list.component';
 
 const routes: Routes = [
   {path:"home",canActivate:[routeguardGuard],component:HomeComponent},
   {path:"cart",canActivate:[routeguardGuard],component:CartComponent},
+  {path:"wishList",canActivate:[routeguardGuard],component:WishListComponent},
   {path:"products/:id",canActivate:[routeguardGuard],component:ProductsComponent},
   {path:"categories",canActivate:[routeguardGuard],component:CategoriesComponent},
   {path:"brands",canActivate:[routeguardGuard],component:BrandsComponent},

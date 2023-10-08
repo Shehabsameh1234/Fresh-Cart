@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { Router } from '@angular/router';
 import { products } from '../product';
+import { WishListService } from '../wish-list.service';
 
-declare let $:any
+declare let $: any
+
 
 @Component({
   selector: 'app-home',
@@ -15,30 +17,32 @@ export class HomeComponent {
 
 
   allProducts!: products[]
-  loading:boolean=true
-  loaded:boolean=false
-  
+  loading: boolean = true
+  loaded: boolean = false
 
-  constructor(private _Router: Router, private _ProductsService: ProductsService) { 
-     $(document).ready(function(){
-    $(".owl-carousel").owlCarousel(
-      {
-        loop:true,
-        margin:0,
-        responsive:{
-            0:{
-                items:1
+
+
+
+  constructor(private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService) {
+    $(document).ready(function () {
+      $(".owl-carousel").owlCarousel(
+        {
+          loop: true,
+          margin: 0,
+          responsive: {
+            0: {
+              items: 1
             },
-            600:{
-                items:2
+            600: {
+              items: 2
             },
-            1000:{
-                items:3
+            1000: {
+              items: 3
             }
+          }
         }
-    }
-    );
-  });
+      );
+    });
 
 
   }
@@ -47,29 +51,39 @@ export class HomeComponent {
     localStorage.setItem("currentPage", "/home")
     this._ProductsService.getAllProducts().subscribe({
       next: (res) => {
-       
-        this.allProducts=res.data
-        this.loaded=true
-        this.loading=false
-      
+        this.allProducts = res.data
+        this.loaded = true
+        this.loading = false
       },
       error: (error) => {
-       
-        this.loading=true
-      
+        this.loading = true
       }
     })
   }
 
 
 
+  wishList(pId: string, event: any) {
 
+ 
 
-
-
+    this._WishListService.addToWishList(pId).subscribe({
+      next: (res) => {
+        console.log(res);
+        let list = event.target.classList;
+        list.add("text-danger");
+        alert("added")
+        
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
 
 
 
 }
+
 
 

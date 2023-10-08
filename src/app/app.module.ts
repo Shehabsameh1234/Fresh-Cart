@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { WishListComponent } from './wish-list/wish-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
     BrandsComponent,
     LogInComponent,
     RegisterComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    WishListComponent
   ],
   imports: [
     BrowserModule,
