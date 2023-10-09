@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { productId } from '../app/auth-object'
+import { productId } from './object'
 import { Observable } from 'rxjs'
 
 

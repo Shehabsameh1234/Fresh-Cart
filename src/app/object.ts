@@ -25,6 +25,9 @@ export interface resetData {
 export interface productId{
     productId:string
 }
+export interface count{
+    count:number
+}
 
 
 

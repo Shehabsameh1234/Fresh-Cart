@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs'
-import { registerData, logInData, emailData, codeData, resetData } from '../app/auth-object'
+import { registerData, logInData, emailData, codeData, resetData } from './object'
 import jwtDecode from 'jwt-decode';
 import { Router } from '@angular/router';
 
