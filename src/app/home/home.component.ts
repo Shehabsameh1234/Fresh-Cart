@@ -117,8 +117,10 @@ export class HomeComponent {
   addToCart(pId:string){
     return this._CartService.addToCart(pId).subscribe({
       next:(res)=>{
-        console.log(res);
+        console.log(res.numOfCartItems);
         alert("added to cart")
+       
+        this._CartService.numberOfCartItems.next(res.numOfCartItems)
       }
     })
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,12 +10,21 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent {
 
-  constructor(private _AuthService: AuthService, private _Router: Router) { }
+
+  numberOfItems!:number
+
+  constructor(private _AuthService: AuthService, private _Router: Router,private _CartService:CartService) { }
 
 
   isLogIn: boolean = false
 
   ngOnInit(): void {
+    this._CartService.getAllCart().subscribe((res)=>{
+      this._CartService.numberOfCartItems.next(res.numOfCartItems)
+    })
+    this._CartService.numberOfCartItems.subscribe(()=>{
+      this.numberOfItems= this._CartService.numberOfCartItems.getValue()
+    })
     this._AuthService.dataToken.subscribe(() => {
       if (this._AuthService.dataToken.getValue() == null) {
         this.isLogIn = false
@@ -26,6 +36,9 @@ export class NavBarComponent {
   }
 
 
+
+
+
   logOut() {
     localStorage.removeItem("userToken") 
     this._AuthService.saveDataToken()
@@ -34,3 +47,8 @@ export class NavBarComponent {
 
 
 }
+
+
+
+
+

@@ -52,6 +52,7 @@ export class CartComponent {
         this.loading = false
         this.allProductCart = null
         this.emptyCart = true
+        this._CartService.numberOfCartItems.next(res.numOfCartItems)
       })
   }
 
@@ -59,11 +60,13 @@ export class CartComponent {
   clearOneItem(pId: string) {
     this._CartService.cleartSpecItem(pId).subscribe({
       next: (res) => {
+        this._CartService.numberOfCartItems.next(res.numOfCartItems)
         this.allProductCart = res.data.products
         this.totalCartPrice = res.data.totalCartPrice
         if (res.numOfCartItems == 0) {
           this.allProductCart = null
           this.emptyCart = true
+          this._CartService.numberOfCartItems.next(res.numOfCartItems)
         }
       },
     })
@@ -78,15 +81,18 @@ export class CartComponent {
             next: (res) => {
               this.allProductCart = res.data.products
               this.totalCartPrice = res.data.totalCartPrice
+              this._CartService.numberOfCartItems.next(res.numOfCartItems)
               if (res.numOfCartItems == 0) {
                 this.allProductCart = null
                 this.emptyCart = true
+                this._CartService.numberOfCartItems.next(res.numOfCartItems)
               }
             },
           })
         } else {
           this.allProductCart = res.data.products
           this.totalCartPrice = res.data.totalCartPrice
+          this._CartService.numberOfCartItems.next(res.numOfCartItems)
         }
       },
     })

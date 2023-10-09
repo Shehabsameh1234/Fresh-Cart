@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../products.service';
 import { products } from '../product';
 import { WishListService } from '../wish-list.service';
+import { CartService } from '../cart.service';
+
 declare let $: any
 @Component({
   selector: 'app-products',
@@ -18,7 +20,7 @@ export class ProductsComponent {
   product!: products
 
 
-  constructor(private _ActivatedRoute: ActivatedRoute, private _ProductsService: ProductsService,private _WishListService:WishListService) {
+  constructor(private _ActivatedRoute: ActivatedRoute,private _CartService:CartService, private _ProductsService: ProductsService,private _WishListService:WishListService) {
 
 
     $(document).ready(function () {
@@ -75,6 +77,18 @@ export class ProductsComponent {
         }
       })
     }
+  }
+
+  
+  addToCart(pId:string){
+    return this._CartService.addToCart(pId).subscribe({
+      next:(res)=>{
+        console.log(res);
+        alert("added to cart")
+        this._CartService.numberOfCartItems.next(res.numOfCartItems)
+      }
+    })
+
   }
 
 

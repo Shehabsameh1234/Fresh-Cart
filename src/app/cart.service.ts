@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { productId,count } from './object'
-import { Observable } from 'rxjs'
+import { BehaviorSubject, Observable } from 'rxjs'
 import {  } from './object'
 
 
@@ -13,6 +13,8 @@ export class CartService {
 
   baseUrl: string = "https://ecommerce.routemisr.com";
   header: any = { token: localStorage.getItem("userToken") }
+
+  numberOfCartItems:BehaviorSubject<any>=new BehaviorSubject(null)
 
 
   constructor(private _HttpClient: HttpClient) { }
@@ -52,3 +54,9 @@ export class CartService {
 
 
 }
+
+
+
+
+
+

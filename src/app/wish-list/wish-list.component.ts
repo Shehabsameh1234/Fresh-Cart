@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WishListService } from '../wish-list.service';
 import { products } from '../product';
+import { CartService } from '../cart.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class WishListComponent {
   loaded: boolean = false
 
   allProductsWishList!: products[]
-  constructor(private _WishListService: WishListService) {
+  constructor(private _WishListService: WishListService,private _CartService:CartService) {
 
   }
 
@@ -59,6 +60,18 @@ export class WishListComponent {
       },
       error: (error) => {
         console.log(error);
+      }
+    })
+  }
+
+
+  
+  addToCart(pId:string){
+    return this._CartService.addToCart(pId).subscribe({
+      next:(res)=>{
+        console.log(res);
+        alert("added to cart")
+        this._CartService.numberOfCartItems.next(res.numOfCartItems)
       }
     })
 

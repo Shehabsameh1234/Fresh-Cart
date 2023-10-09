@@ -14,8 +14,47 @@ a {
 
 li {
     i.fa-cart-shopping {
-        margin-top: 7px;
-        font-size: 20px;
+        margin-top: 6px;
+        font-size: 28px;
     }
+}
+
+li{
+    position: relative;
+    i + span{
+       display: inline-block;
+       width: 20px;
+       height: 20px;
+       border-radius: 30%;
+       -webkit-border-radius: 30%;
+       -moz-border-radius: 30%;
+       -ms-border-radius: 30%;
+       -o-border-radius: 30%;
+       background-color: black;
+       color: white;
+       position: absolute;
+       top:-5px;
+       right: -5px;
+       p{
+        position: relative;
+        bottom: 2px;
+       }
+     
+}
+}
+
+
+@media  (min-width: 0)and (max-width: 991px) {
+
+
+    li{
+      
+        i + span{
+           bottom:5px;
+           left:50%;
+   
+    }
+    }
+
 }
 
