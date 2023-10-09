@@ -25,6 +25,7 @@ export interface products {
     createdAt: Date;
     updatedAt: Date;
     id: string;
+    product: string;
     priceAfterDiscount?: number;
     availableColors?: any[];
 }

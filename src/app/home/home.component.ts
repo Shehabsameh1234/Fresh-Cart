@@ -3,6 +3,7 @@ import { ProductsService } from '../products.service';
 import { Router } from '@angular/router';
 import { products } from '../product';
 import { WishListService } from '../wish-list.service';
+import { CartService } from '../cart.service';
 
 
 declare let $: any
@@ -24,7 +25,7 @@ export class HomeComponent {
   intersection:string[]=[]
   heart:boolean=true
 
-  constructor(private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService) {
+  constructor(private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService ,private _CartService:CartService) {
     $(document).ready(function () {
       $(".owl-carousel").owlCarousel(
         {
@@ -113,7 +114,15 @@ export class HomeComponent {
   }
 
 
+  addToCart(pId:string){
+    return this._CartService.addToCart(pId).subscribe({
+      next:(res)=>{
+        console.log(res);
+        alert("added to cart")
+      }
+    })
 
+  }
 
 
 
