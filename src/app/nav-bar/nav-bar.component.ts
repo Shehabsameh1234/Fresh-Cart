@@ -19,8 +19,13 @@ export class NavBarComponent {
   isLogIn: boolean = false
 
   ngOnInit(): void {
-    this._CartService.getAllCart().subscribe((res)=>{
-      this._CartService.numberOfCartItems.next(res.numOfCartItems)
+    this._CartService.getAllCart().subscribe({
+      next:(res)=>{
+        this._CartService.numberOfCartItems.next(res.numOfCartItems)
+      },
+      error:()=>{
+        this._CartService.numberOfCartItems.next(0)
+      }
     })
     this._CartService.numberOfCartItems.subscribe(()=>{
       this.numberOfItems= this._CartService.numberOfCartItems.getValue()

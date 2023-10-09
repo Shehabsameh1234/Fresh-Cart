@@ -21,7 +21,7 @@
     </div>
     <div>
         <label class="my-3" for=" password">password :</label>
-        <input class="form-control" type="text" id="password" formControlName="password">
+        <input class="form-control" type="password" id="password" formControlName="password">
         <div class="bg-success text-white p-2 rounded mt-1"
             *ngIf="logInForm.get('password')?.errors&& logInForm.get('password')?.touched">
             <p *ngIf="logInForm.get('password')?.errors?.['required']">input is required</p>

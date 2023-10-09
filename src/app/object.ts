@@ -29,6 +29,15 @@ export interface count{
     count:number
 }
 
+export interface payData {
+    details:string,
+    phone:number,
+    city:string
+    }
+
+
+
+
 
 
 

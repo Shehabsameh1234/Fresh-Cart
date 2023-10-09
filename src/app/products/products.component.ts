@@ -18,9 +18,11 @@ export class ProductsComponent {
   productImg1!: []
   productImg2!: []
   product!: products
+  loadingCenter: boolean = false;
 
 
-  constructor(private _ActivatedRoute: ActivatedRoute,private _CartService:CartService, private _ProductsService: ProductsService,private _WishListService:WishListService) {
+
+  constructor(private _ActivatedRoute: ActivatedRoute, private _CartService: CartService, private _ProductsService: ProductsService, private _WishListService: WishListService) {
 
 
     $(document).ready(function () {
@@ -56,7 +58,7 @@ export class ProductsComponent {
           this.productImg2 = this.productImg1
         }
       },
-    
+
     })
   }
 
@@ -69,7 +71,7 @@ export class ProductsComponent {
           event.target.style.color = "black";
         }
       })
-    }else {
+    } else {
       this._WishListService.addToWishList(pId).subscribe({
         next: (res) => {
           alert("added")
@@ -79,14 +81,18 @@ export class ProductsComponent {
     }
   }
 
-  
-  addToCart(pId:string){
+
+  addToCart(pId: string) {
+    this.loadingCenter = true
+
     return this._CartService.addToCart(pId).subscribe({
-      next:(res)=>{
-        console.log(res);
-        alert("added to cart")
+      next: (res) => {
+       
+  
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
-      }
+        this.loadingCenter = false
+        
+      }, error: () => { this.loadingCenter = false}
     })
 
   }

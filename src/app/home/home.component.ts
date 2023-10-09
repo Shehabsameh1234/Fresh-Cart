@@ -24,6 +24,8 @@ export class HomeComponent {
   i!: number;
   intersection:string[]=[]
   heart:boolean=true
+  loadingCenter: boolean = false;
+  userWord:string=""
 
   constructor(private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService ,private _CartService:CartService) {
     $(document).ready(function () {
@@ -107,7 +109,6 @@ export class HomeComponent {
         next: (res) => {
           alert("added")
           event.target.style.color = "red";
-
         }
       })
     }
@@ -115,12 +116,15 @@ export class HomeComponent {
 
 
   addToCart(pId:string){
+    this.loadingCenter=true
     return this._CartService.addToCart(pId).subscribe({
       next:(res)=>{
         console.log(res.numOfCartItems);
-        alert("added to cart")
-       
+        this.loadingCenter=false
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
+      },
+      error:()=>{
+        this.loadingCenter=false
       }
     })
 

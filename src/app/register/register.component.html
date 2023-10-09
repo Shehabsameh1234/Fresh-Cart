@@ -35,7 +35,7 @@
 
     <div class="mb-3">
         <label class="my-2" for=" password">password :</label>
-        <input class="form-control" type="text" id="password" formControlName="password">
+        <input class="form-control" type="password" id="password" formControlName="password">
         <div class="bg-success text-white p-2 rounded mt-1"
             *ngIf="registerForm.get('password')?.errors&& registerForm.get('password')?.touched">
             <p *ngIf="registerForm.get('password')?.errors?.['required']">input is required</p>
@@ -45,7 +45,7 @@
 
     <div class="mb-3">
         <label class="my-2"  for="rePassword">rePassword :</label>
-        <input class="form-control" type="text" id="rePassword" formControlName="rePassword">
+        <input class="form-control" type="password" id="rePassword" formControlName="rePassword">
         <div class="bg-success text-white p-2 rounded mt-1"
             *ngIf="registerForm.get('rePassword')?.errors&& registerForm.get('rePassword')?.touched">
             <p *ngIf="registerForm.get('rePassword')?.errors?.['required']">input is required</p>

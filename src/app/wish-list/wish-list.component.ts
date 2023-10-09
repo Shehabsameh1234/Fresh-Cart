@@ -14,6 +14,8 @@ export class WishListComponent {
   emptyList: boolean = false
   loading: boolean = true
   loaded: boolean = false
+  loadingCenter: boolean = false;
+
 
   allProductsWishList!: products[]
   constructor(private _WishListService: WishListService,private _CartService:CartService) {
@@ -67,11 +69,15 @@ export class WishListComponent {
 
   
   addToCart(pId:string){
+    this.loadingCenter=true
+
     return this._CartService.addToCart(pId).subscribe({
       next:(res)=>{
-        console.log(res);
-        alert("added to cart")
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
+        this.loadingCenter=false
+      },error:()=>{
+        this.loadingCenter=false
+
       }
     })
 

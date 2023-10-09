@@ -11,11 +11,14 @@ import { CategoriesComponent } from './categories/categories.component';
 import { BrandsComponent } from './brands/brands.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { WishListComponent } from './wish-list/wish-list.component';
-
+import { CheckOutComponent } from './check-out/check-out.component';
+import { HeaderInterceptor } from './header.interceptor';
+import { SearchPipe } from './search.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,16 +32,20 @@ import { WishListComponent } from './wish-list/wish-list.component';
     LogInComponent,
     RegisterComponent,
     ForgetPasswordComponent,
-    WishListComponent
+    WishListComponent,
+    CheckOutComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,HttpClientModule,ReactiveFormsModule,FormsModule
+    AppRoutingModule,HttpClientModule,ReactiveFormsModule,FormsModule,BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HeaderInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
 

@@ -1,5 +1,12 @@
 <section class="container p-5 mt-5">
 
+    <!-- loading spiner -->
+    <div *ngIf="loadingCenter" id="loading" class="justify-content-center align-items-center">
+        <span class="loader"></span>
+    </div>
+    <!-- loading spiner -->
+
+
     <div class="owl-carousel owl-theme ">
         <div class="item">
             <img class="rounded img-cursoul" src="assets/img/books.jpg" alt="books">
@@ -36,7 +43,7 @@
     </div>
 
     <div class="my-3">
-        <input type="text" class="form-control" placeholder="search here">
+        <input type="text" class="form-control" placeholder="search by title Ex:Woman Shawl" [(ngModel)]="userWord">
     </div>
 
     <div *ngIf="loading" class="row text-center">
@@ -49,7 +56,7 @@
 
     <div *ngIf="loaded">
         <div class="row text-center">
-            <div class="col-md-6 col-12 col-lg-3 my-4  " *ngFor="let product of allProducts">
+            <div class="col-md-6 col-12 col-lg-3 my-4  " *ngFor="let product of allProducts | search:userWord">
                 <div class="shadow px-2 py-4 p-md-4 p-lg-4 ">
                     <div class="cursor-pointer">
                         <div [routerLink]="['/products',product._id]">

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { productId,count } from './object'
 import { BehaviorSubject, Observable } from 'rxjs'
-import {  } from './object'
+
 
 
 
@@ -22,34 +22,24 @@ export class CartService {
 
   addToCart(pId:string): Observable<any>{
     let body: productId = { productId: pId }
-    return this._HttpClient.post(this.baseUrl + "/api/v1/cart", body, {
-      headers: this.header
-    })
+    return this._HttpClient.post(this.baseUrl + "/api/v1/cart", body)
   }
 
   getAllCart(): Observable<any>{
-    return this._HttpClient.get(this.baseUrl + "/api/v1/cart", {
-      headers: this.header
-    })
+    return this._HttpClient.get(this.baseUrl + "/api/v1/cart")
   }
   
   cleartAllCart(): Observable<any>{
-    return this._HttpClient.delete(this.baseUrl + "/api/v1/cart", {
-      headers: this.header
-    })
+    return this._HttpClient.delete(this.baseUrl + "/api/v1/cart")
   }
 
   cleartSpecItem(pId:string): Observable<any>{
-    return this._HttpClient.delete(this.baseUrl + `/api/v1/cart/${pId}`, {
-      headers: this.header
-    })
+    return this._HttpClient.delete(this.baseUrl + `/api/v1/cart/${pId}`)
   }
 
   updateCart(pCount: number, pId: string): Observable<any> {
     let body: count = { count: pCount }
-    return this._HttpClient.put(this.baseUrl + `/api/v1/cart/${pId}`, body, {
-      headers: this.header
-    })
+    return this._HttpClient.put(this.baseUrl + `/api/v1/cart/${pId}`, body)
   }
 
 

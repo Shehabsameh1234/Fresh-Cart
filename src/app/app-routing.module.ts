@@ -11,18 +11,19 @@ import { RegisterComponent } from './register/register.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { routeguardGuard } from './routeguard.guard';
 import { WishListComponent } from './wish-list/wish-list.component';
+import { CheckOutComponent } from './check-out/check-out.component';
 
 const routes: Routes = [
-  {path:"home",canActivate:[routeguardGuard],component:HomeComponent},
-  {path:"cart",canActivate:[routeguardGuard],component:CartComponent},
-  {path:"wishList",canActivate:[routeguardGuard],component:WishListComponent},
-  {path:"products/:id",canActivate:[routeguardGuard],component:ProductsComponent},
-  {path:"categories",canActivate:[routeguardGuard],component:CategoriesComponent},
-  {path:"brands",canActivate:[routeguardGuard],component:BrandsComponent},
-  {path:"logIn",component:LogInComponent},
-  {path:"register",component:RegisterComponent},
-  {path:"forgetPassword",component:ForgetPasswordComponent},
-  {path:"**",canActivate:[routeguardGuard],component:HomeComponent},
+  {path:"home",canActivate:[routeguardGuard],component:HomeComponent,data: {animation: 'Home'}},
+  {path:"cart",canActivate:[routeguardGuard],component:CartComponent,data: {animation: 'cart'}},
+  {path:"wishList",canActivate:[routeguardGuard],component:WishListComponent,data: {animation: 'wishList'}},
+  {path:"categories",canActivate:[routeguardGuard],component:CategoriesComponent,data: {animation: 'categories'}},
+  {path:"brands",canActivate:[routeguardGuard],component:BrandsComponent, data:{animation: 'brands'}},
+  {path:"chekout/:id",canActivate:[routeguardGuard],component:CheckOutComponent,data:{animation: 'chekout/:id'}},
+  {path:"logIn",component:LogInComponent,data:{animation: 'logIn'}},
+  {path:"register",component:RegisterComponent,data:{animation: 'register'}},
+  {path:"forgetPassword",component:ForgetPasswordComponent,data:{animation: 'forgetPassword'}},
+  {path:"**",canActivate:[routeguardGuard],component:HomeComponent,data:{animation: 'home'}},
 ];
 
 @NgModule({
