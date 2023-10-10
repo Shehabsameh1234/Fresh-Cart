@@ -18,7 +18,7 @@ export class WishListComponent {
 
 
   allProductsWishList!: products[]
-  constructor(private _WishListService: WishListService,private _CartService:CartService) {
+  constructor(private _WishListService: WishListService, private _CartService: CartService) {
 
   }
 
@@ -31,7 +31,7 @@ export class WishListComponent {
         this.loading = false
         this.allProductsWishList = res.data
         if (res.data.length == 0) {
-         this.emptyList=true
+          this.emptyList = true
         }
       },
       error: (error) => {
@@ -44,36 +44,29 @@ export class WishListComponent {
   deletItem(pId: string) {
     this._WishListService.deleteItemWishList(pId).subscribe({
       next: (res) => {
-        console.log(res.data);
         this._WishListService.getUserWishList().subscribe({
           next: (res) => {
-            console.log(res.data);
             this.allProductsWishList = res.data
             if (res.data.length == 0) {
-              this.emptyList=true
-             }
-          },
-          error: (error) => {
-            console.log(error);
+              this.emptyList = true
+            }
           }
         })
-      },
-      error: (error) => {
-        console.log(error);
       }
     })
   }
 
 
-  
-  addToCart(pId:string){
-    this.loadingCenter=true
+
+  addToCart(pId: string) {
+    this.loadingCenter = true
     return this._CartService.addToCart(pId).subscribe({
-      next:(res)=>{
+      next: (res) => {
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
-        this.loadingCenter=false
-      },error:()=>{
-        this.loadingCenter=false
+        this.loadingCenter = false
+        this.deletItem(pId)
+      }, error: () => {
+        this.loadingCenter = false
       }
     })
 
