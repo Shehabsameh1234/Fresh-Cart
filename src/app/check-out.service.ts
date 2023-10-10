@@ -15,15 +15,13 @@ export class CheckOutService {
 
   constructor(private _HttpClient: HttpClient) { }
 
-
-
-
-
   pay(cId: string, formvalue: payData): Observable<any> {
     let bodyPay: any = {
       shippingAddress: formvalue
     }
-    return this._HttpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${cId}?url=http://localhost:4200`, bodyPay)
+    return this._HttpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${cId}?url=http://localhost:4200`, bodyPay,{
+      headers:this.header
+    })
   }
 }
 
