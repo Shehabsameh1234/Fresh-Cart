@@ -100,14 +100,12 @@ export class HomeComponent {
     if (event.target.style.color == "red") {
       this._WishListService.deleteItemWishList(pId).subscribe({
         next: (res) => {
-          alert("deleted")
           event.target.style.color = "black";
         }
       })
     } else {
       this._WishListService.addToWishList(pId).subscribe({
         next: (res) => {
-          alert("added")
           event.target.style.color = "red";
         }
       })

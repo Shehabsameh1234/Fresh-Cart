@@ -4,10 +4,6 @@ import { Router } from '@angular/router';
 import { productId } from './object'
 import { Observable } from 'rxjs'
 
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })

@@ -3,10 +3,13 @@ import { CartService } from '../cart.service';
 
 
 
+
+
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
 
@@ -18,7 +21,7 @@ export class CartComponent {
   totalCartPrice!: number
   numOfCartItems!: number
   countItem!: number
-  cartId!:string
+  cartId!: string
 
   constructor(private _CartService: CartService) { }
 
@@ -26,14 +29,14 @@ export class CartComponent {
     localStorage.setItem("currentPage", "/cart")
     this._CartService.getAllCart().subscribe({
       next: (res) => {
-        this.cartId=res.data._id
-        
+        this.cartId = res.data._id
+
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
         this.numOfCartItems = res.numOfCartItems
         this.totalCartPrice = res.data.totalCartPrice
         this.allProductCart = res.data.products
         this.loaded = true
-        this.loading = false  
+        this.loading = false
         if (res.data.products.length == 0) {
           this.emptyCart = true
           this.allProductCart = null
@@ -42,7 +45,7 @@ export class CartComponent {
       error: (error) => {
         this.loading = false
         this.emptyCart = true
-          this._CartService.numberOfCartItems.next(0)
+        this._CartService.numberOfCartItems.next(0)
       }
     })
   }
@@ -55,7 +58,7 @@ export class CartComponent {
         this.loading = false
         this.allProductCart = null
         this.emptyCart = true
-          this._CartService.numberOfCartItems.next(0)
+        this._CartService.numberOfCartItems.next(0)
       })
   }
 

@@ -57,8 +57,6 @@ export class WishListComponent {
             console.log(error);
           }
         })
-        alert("deleted")
-
       },
       error: (error) => {
         console.log(error);
@@ -70,14 +68,12 @@ export class WishListComponent {
   
   addToCart(pId:string){
     this.loadingCenter=true
-
     return this._CartService.addToCart(pId).subscribe({
       next:(res)=>{
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
         this.loadingCenter=false
       },error:()=>{
         this.loadingCenter=false
-
       }
     })
 

@@ -22,24 +22,34 @@ export class CartService {
 
   addToCart(pId:string): Observable<any>{
     let body: productId = { productId: pId }
-    return this._HttpClient.post(this.baseUrl + "/api/v1/cart", body)
+    return this._HttpClient.post(this.baseUrl + "/api/v1/cart", body,{
+      headers:this.header
+    })
   }
 
   getAllCart(): Observable<any>{
-    return this._HttpClient.get(this.baseUrl + "/api/v1/cart")
+    return this._HttpClient.get(this.baseUrl + "/api/v1/cart",{
+      headers:this.header
+    })
   }
   
   cleartAllCart(): Observable<any>{
-    return this._HttpClient.delete(this.baseUrl + "/api/v1/cart")
+    return this._HttpClient.delete(this.baseUrl + "/api/v1/cart",{
+      headers:this.header
+    })
   }
 
   cleartSpecItem(pId:string): Observable<any>{
-    return this._HttpClient.delete(this.baseUrl + `/api/v1/cart/${pId}`)
+    return this._HttpClient.delete(this.baseUrl + `/api/v1/cart/${pId}`,{
+      headers:this.header
+    })
   }
 
   updateCart(pCount: number, pId: string): Observable<any> {
     let body: count = { count: pCount }
-    return this._HttpClient.put(this.baseUrl + `/api/v1/cart/${pId}`, body)
+    return this._HttpClient.put(this.baseUrl + `/api/v1/cart/${pId}`, body,{
+      headers:this.header
+    })
   }
 
 
