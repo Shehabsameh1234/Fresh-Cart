@@ -66,7 +66,7 @@
                         </div>
                         <div class="d-flex justify-content-between mt-2">
                             <p class=" text-start">{{product.price}}EGP</p>
-                            <p class="   "><i (click)="wishListAddAndRemove(product._id,$event,i)" 
+                            <p class="   "><i [id]="product._id" (click)="wishListAddAndRemove(product._id,$event,i)" 
                                     class="fa-solid font-size cursor-pointer fa-heart"></i></p>
 
                             <p class=" text-start">{{product.ratingsAverage}}<i
