@@ -22,12 +22,14 @@ export class HomeComponent {
   allId: string[] = []
   whishId: string[] = []
   i!: number;
-  intersection:string[]=[]
-  heart:boolean=true
+  intersection: string[] = []
+  heart: boolean = true
   loadingCenter: boolean = false;
-  userWord:string=""
+  userWord: string = ""
+  indexArr: number[] = []
 
-  constructor(private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService ,private _CartService:CartService) {
+
+  constructor(private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService, private _CartService: CartService) {
     $(document).ready(function () {
       $(".owl-carousel").owlCarousel(
         {
@@ -60,7 +62,7 @@ export class HomeComponent {
         // res.data.forEach((values: any) => {
         //   this.allId.push(values._id)
         // })
-      
+
 
         // this._WishListService.getUserWishList().subscribe({
         //   next: (res) => {
@@ -76,57 +78,62 @@ export class HomeComponent {
         //          this.heart=true;
         //         }
         //         else{
-                  
+
         //         }
-        
+
         //       })
         //     })
         //   }, 
-          
-        // })
 
-       
+        // })
+        $(document).ready(() => {
+          this.indexArr.push(...JSON.parse(localStorage.getItem("indexArr")!))
+          for (var i = 0; i < this.indexArr.length; i++) {
+            document.querySelectorAll(".fa-heart")[this.indexArr[i]].classList.add("text-danger")
+          }
+        })
       },
       error: (error) => {
         this.loading = true
       }
     })
-
-
-
   }
 
-  wishListAddAndRemove(pId: string, event: any) {
-    if (event.target.style.color == "red") {
-      this._WishListService.deleteItemWishList(pId).subscribe({
-        next: (res) => {
-          event.target.style.color = "black";
-        }
-      })
-    } else {
-      this._WishListService.addToWishList(pId).subscribe({
-        next: (res) => {
-          event.target.style.color = "red";
-        }
+
+
+  wishListAddAndRemove(pId: string, event: any, i: number) {
+    if (Array.from(event.srcElement.classList).includes("text-danger") == false) {
+      this._WishListService.addToWishList(pId).subscribe(() => {
+        this.indexArr.push(i)
+        localStorage.setItem("indexArr", JSON.stringify(this.indexArr))
+        document.querySelectorAll(".fa-heart")[i].classList.add("text-danger")
       })
     }
+    else if (Array.from(event.srcElement.classList).includes("text-danger") == true) {
+      document.querySelectorAll(".fa-heart")[i].classList.remove("text-danger")
+    }
+
   }
 
-
-  addToCart(pId:string){
-    this.loadingCenter=true
+  addToCart(pId: string) {
+    this.loadingCenter = true
     return this._CartService.addToCart(pId).subscribe({
-      next:(res)=>{
+      next: (res) => {
         console.log(res.numOfCartItems);
-        this.loadingCenter=false
+        this.loadingCenter = false
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
       },
-      error:()=>{
-        this.loadingCenter=false
+      error: () => {
+        this.loadingCenter = false
       }
     })
 
   }
+
+
+
+
+
 
 
 

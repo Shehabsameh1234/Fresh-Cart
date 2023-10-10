@@ -56,7 +56,7 @@
 
     <div *ngIf="loaded">
         <div class="row text-center">
-            <div class="col-md-6 col-12 col-lg-3 my-4  " *ngFor="let product of allProducts | search:userWord">
+            <div class="col-md-6 col-12 col-lg-3 my-4  " *ngFor="let product of allProducts | search:userWord ,let i=index">
                 <div class="shadow px-2 py-4 p-md-4 p-lg-4 ">
                     <div class="cursor-pointer">
                         <div [routerLink]="['/products',product._id]">
@@ -66,7 +66,7 @@
                         </div>
                         <div class="d-flex justify-content-between mt-2">
                             <p class=" text-start">{{product.price}}EGP</p>
-                            <p class="   "><i (click)="wishListAddAndRemove(product._id,$event)" 
+                            <p class="   "><i (click)="wishListAddAndRemove(product._id,$event,i)" 
                                     class="fa-solid font-size cursor-pointer fa-heart"></i></p>
 
                             <p class=" text-start">{{product.ratingsAverage}}<i
