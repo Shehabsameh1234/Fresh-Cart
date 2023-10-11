@@ -26,6 +26,7 @@ export class HomeComponent {
         {
           loop: true,
           margin: 0,
+          
           responsive: {
             0: {
               items: 1

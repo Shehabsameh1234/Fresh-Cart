@@ -9,7 +9,7 @@
     <div *ngIf="loaded" class="row text-center">
         <div class="col-md-6 col-12 col-lg-4 my-4  " *ngFor="let category of allCategories">
             <div class="shadow px-2 py-4 p-md-4 p-lg-4 ">
-              <img [src]="category.image" alt="" class="w-100">
+              <img [src]="category.image" [alt]="category.slug" class="w-100">
               <h3 class="text-success mt-2">{{category.name}}</h3>
             </div>
         </div>

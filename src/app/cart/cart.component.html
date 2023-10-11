@@ -17,7 +17,7 @@
         </div>
         <div *ngFor="let p of allProductCart" class="row shadow p-3 mt-4 align-items-center text-center ">
             <div class="col-md-2 col-12">
-                <img [src]="p.product.imageCover" alt="" class="w-100">
+                <img [src]="p.product.imageCover" [alt]="p.slug" class="w-100">
             </div>
             <div class="col-md-2 col-12">
                 <p>{{p.product.title}}</p>
