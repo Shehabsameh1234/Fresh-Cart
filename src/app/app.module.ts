@@ -18,6 +18,7 @@ import { WishListComponent } from './wish-list/wish-list.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { SearchPipe } from './search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PaysucpaymentSuccessfulComponent } from './paysucpayment-successful/paysucpayment-successful.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     WishListComponent,
     CheckOutComponent,
     SearchPipe,
+    PaysucpaymentSuccessfulComponent,
   ],
   imports: [
     BrowserModule,

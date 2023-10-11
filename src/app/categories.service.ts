@@ -10,4 +10,8 @@ export class CategoriesService {
   getAllCategories(): Observable<any> {
     return this._HttpClient.get(`${this.baseUrl}/api/v1/categories`)
   }
+
+  getSpecCategory(categoryId:string): Observable<any> {
+    return this._HttpClient.get(`${this.baseUrl}/api/v1/categories/${categoryId}/subcategories`)
+  }
 }

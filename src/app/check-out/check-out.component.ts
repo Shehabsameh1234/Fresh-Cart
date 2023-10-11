@@ -24,7 +24,7 @@ export class CheckOutComponent {
     this._CheckOutService.pay(cartId, chekOutForm.value).subscribe({
       next: (res) => {
         window.location.href = res.session.url
-        localStorage.setItem("currentPage", "/home")
+        localStorage.setItem("currentPage", "//paymentSuccessful")
       }
     })
   }

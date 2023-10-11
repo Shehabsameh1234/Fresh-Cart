@@ -1,18 +1,32 @@
 <section class="container p-5 mt-5">
     <div *ngIf="loading" class="row text-center">
-        <div  *ngFor="let _ of [].constructor(10)" class="col-md-6 col-12 col-lg-4 my-4  ">
+        <div *ngFor="let _ of [].constructor(10)" class="col-md-6 col-12 col-lg-4 my-4  ">
             <div class="px-2 py-4 p-md-4 p-lg-4 ">
                 <span class="loader2 d-inline-block"></span>
             </div>
         </div>
     </div>
-    <div *ngIf="loaded" class="row text-center">
-        <div class="col-md-6 col-12 col-lg-4 my-4  " *ngFor="let category of allCategories">
-            <div class="shadow px-2 py-4 p-md-4 p-lg-4 ">
-              <img [src]="category.image" [alt]="category.slug" class="w-100">
-              <h3 class="text-success mt-2">{{category.name}}</h3>
+    <div *ngIf="loaded" class="row text-center cursor-pointer">
+        <div class="col-md-6 col-12 col-lg-4 my-4 " *ngFor="let category of allCategories">
+            <div [id]="category.name" class="shadow px-2 py-4 p-md-4 p-lg-4"
+                (click)="getSpecCategory(category._id,$event)">
+                <img [id]="category.name" [src]="category.image" [alt]="category.slug" class="w-100">
+                <h3 [id]="category.name" class="text-success mt-2">{{category.name}}</h3>
             </div>
         </div>
     </div>
-</section>
 
+
+   <div>
+    <h2  class="text-success text-center">{{categoryName}}</h2>
+    <div class="row text-center cursor-pointer">
+        <div class="col-md-6 col-12 col-lg-4 my-4 " *ngFor="let subCategory of subCategories">
+            <div class="shadow px-2 py-4 p-md-4 p-lg-4">
+                <h6>{{subCategory.name}}</h6>
+            </div>
+        </div>
+    </div>
+   </div>
+
+
+</section>

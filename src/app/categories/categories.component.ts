@@ -9,15 +9,18 @@ import { Title } from '@angular/platform-browser';
 })
 export class CategoriesComponent {
   allCategories!: products[]
+  subCategories!: products[]
   loading: boolean = true
   loaded: boolean = false
-  constructor(private titleService:Title,private _CategoriesService: CategoriesService) {  titleService.setTitle("Categories")}
+  categoryName!: string
+
+  constructor(private titleService: Title, private _CategoriesService: CategoriesService) { titleService.setTitle("Categories") }
   ngOnInit(): void {
     localStorage.setItem("currentPage", "/categories")
     this._CategoriesService.getAllCategories().subscribe({
       next: (res) => {
         console.log(res.data[0].image);
-        this.allCategories=res.data
+        this.allCategories = res.data
         this.loaded = true
         this.loading = false
       },
@@ -27,4 +30,18 @@ export class CategoriesComponent {
       }
     })
   }
+  getSpecCategory(categoryId: string, event: any) {
+    this._CategoriesService.getSpecCategory(categoryId).subscribe({
+      next: (res) => {
+        this.categoryName = event.srcElement.id + " subategories"
+        this.subCategories = res.data
+       if(res.data[0]==undefined){
+        this.categoryName=" "
+       }  
+      },
+      error: () => {}
+    })
+  }
+
+
 }
