@@ -1,47 +1,42 @@
-
 <section class="container p-5 mt-5">
-
     <h2 class="text-success text-center">my cart list</h2>
-    <h3 *ngIf="emptyCart" class="text-danger text-center mt-5" >your cart is empty</h3>
+    <h3 *ngIf="emptyCart" class="text-danger text-center mt-5">your cart is empty</h3>
 
     <div *ngIf="loading" class="row text-center">
-        <div  *ngFor="let _ of [].constructor(5)" class="col-12 hhh  ">
+        <div *ngFor="let _ of [].constructor(5)" class="col-12 hhh  ">
             <div class="px-2 py-4 p-md-4 p-lg-4 ">
                 <span class="loader2 d-inline-block"></span>
             </div>
         </div>
     </div>
-
-
     <div *ngIf="loaded">
-        <div *ngIf="allProductCart" class="d-flex flex-wrap mt-4 p-3 shadow justify-content-between" >
+        <div *ngIf="allProductCart" class="d-flex flex-wrap mt-4 p-3 shadow justify-content-between">
             <h4 class="mt-sm-0 mt-3">total price : <span class="text-success">{{totalCartPrice}} EGP</span></h4>
-            
-            <button class="btn btn-success px-3 mt-sm-0 mt-2" [routerLink]="['/chekout',cartId]" >check out</button>
-        </div>
 
-        <div  *ngFor="let p of allProductCart" class="row shadow p-3 mt-4 align-items-center text-center ">
-            <div class="col-md-2 col-12" >
+            <button class="btn btn-success px-3 mt-sm-0 mt-2" [routerLink]="['/chekout',cartId]">check out</button>
+        </div>
+        <div *ngFor="let p of allProductCart" class="row shadow p-3 mt-4 align-items-center text-center ">
+            <div class="col-md-2 col-12">
                 <img [src]="p.product.imageCover" alt="" class="w-100">
             </div>
-            <div class="col-md-2 col-12" >
+            <div class="col-md-2 col-12">
                 <p>{{p.product.title}}</p>
                 <h6 class="text-success">{{p.price}} EGP</h6>
-               <div class="cursor-pointer">
-                <i class="fa-solid fa-trash text-danger"></i>
-                <span class="text-danger"(click)=" clearOneItem(p.product._id)"> remove</span>
-               </div>
+                <div class="cursor-pointer">
+                    <i class="fa-solid fa-trash text-danger"></i>
+                    <span class="text-danger" (click)=" clearOneItem(p.product._id)"> remove</span>
+                </div>
             </div>
-            <div class="col-md-3 col-12 offset-md-5 mt-sm-0 mt-4" >
-              <button class="btn btn-outline-success" (click)="updateQuantity(p.count-1,p.product._id)" >-</button>
-             <span class="h5 px-4" >{{p.count}}</span>
-              <button class="btn btn-outline-success" (click)="updateQuantity(p.count+1,p.product._id)" >+</button>
+            <div class="col-md-3 col-12 offset-md-5 mt-sm-0 mt-4">
+                <button class="btn btn-outline-success" (click)="updateQuantity(p.count-1,p.product._id)">-</button>
+                <span class="h5 px-4">{{p.count}}</span>
+                <button class="btn btn-outline-success" (click)="updateQuantity(p.count+1,p.product._id)">+</button>
             </div>
         </div>
-        <button (click)="clearCart()" *ngIf="allProductCart" class="btn btn-outline-success mt-4 text-center d-block m-auto w-100" >clear all cart</button>
+        <button (click)="clearCart()" *ngIf="allProductCart"
+            class="btn btn-outline-success mt-4 text-center d-block m-auto w-100">clear all cart</button>
     </div>
-  
-
-
+    <strong class="shadow">
+        <small class="text-center"></small>
+    </strong>
 </section>
-

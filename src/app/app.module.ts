@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { FooterComponent } from './footer/footer.component';
+
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductsComponent } from './products/products.component';
@@ -18,11 +18,11 @@ import { WishListComponent } from './wish-list/wish-list.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { SearchPipe } from './search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    FooterComponent,
     HomeComponent,
     CartComponent,
     ProductsComponent,
@@ -33,7 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ForgetPasswordComponent,
     WishListComponent,
     CheckOutComponent,
-    SearchPipe
+    SearchPipe,
   ],
   imports: [
     BrowserModule,

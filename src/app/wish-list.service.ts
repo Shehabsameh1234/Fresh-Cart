@@ -8,35 +8,25 @@ import { Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class WishListService {
-
-
-
   baseUrl: string = "https://ecommerce.routemisr.com";
   header: any = { token: localStorage.getItem("userToken") }
-
   constructor(private _HttpClient: HttpClient, private _Router: Router) { }
-
-
   addToWishList(pId: string): Observable<any> {
     let body: productId = { productId: pId }
     return this._HttpClient.post(this.baseUrl + "/api/v1/wishlist", body, {
       headers: this.header
     })
   }
-
   getUserWishList(): Observable<any> {
     return this._HttpClient.get(this.baseUrl + "/api/v1/wishlist", {
       headers: this.header
     })
   }
-
   deleteItemWishList(pId:string): Observable<any> {
     return this._HttpClient.delete(`${this.baseUrl}/api/v1/wishlist/${pId}`, {
       headers: this.header
     })
   }
-
-
 }
 
 

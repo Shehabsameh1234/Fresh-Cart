@@ -3,7 +3,6 @@ export interface Pokedex {
     metadata: Metadata;
     data: products[];
 }
-
 export interface products {
     sold: number;
     images: string[];

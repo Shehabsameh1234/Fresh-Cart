@@ -1,15 +1,11 @@
 <form class="container p-5 mt-5 " (ngSubmit)="logInSubmit(logInForm)" [formGroup]="logInForm">
-
     <!-- loading spiner -->
     <div *ngIf="loading" id="loading" class="justify-content-center align-items-center">
         <span class="loader"></span>
     </div>
     <!-- loading spiner -->
-
     <h2 class="mb-4">log in now :</h2>
-
     <h2 class="text-success text-center">{{errorMessage}}</h2>
-
     <div>
         <label class=" my-3" for="email">email :</label>
         <input class="form-control" type="email" id="email" formControlName="email">

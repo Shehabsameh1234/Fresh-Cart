@@ -4,16 +4,13 @@ import { Router } from '@angular/router';
 import { products } from '../product';
 import { WishListService } from '../wish-list.service';
 import { CartService } from '../cart.service';
-
 declare let $: any
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
   allProducts!: products[]
   loading: boolean = true
   loaded: boolean = false
@@ -23,7 +20,6 @@ export class HomeComponent {
   heart: boolean = true
   loadingCenter: boolean = false;
   userWord: string = ""
-
   constructor(private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService, private _CartService: CartService) {
     $(document).ready(function () {
       $(".owl-carousel").owlCarousel(
@@ -45,7 +41,6 @@ export class HomeComponent {
       );
     });
   }
-
   ngOnInit(): void {
     localStorage.setItem("currentPage", "/home")
     this._ProductsService.getAllProducts().subscribe({
@@ -66,7 +61,6 @@ export class HomeComponent {
       }
     })
   }
-
   wishListAddAndRemove(pId: string, event: any, i: number) {
     if (Array.from(event.srcElement.classList).includes("text-danger") == false) {
       this._WishListService.addToWishList(pId).subscribe(() => {
@@ -77,7 +71,7 @@ export class HomeComponent {
           document.querySelector("strong")?.classList.remove("animate")
         }, 2000);
         const element: HTMLElement = document.querySelector('strong small') as HTMLElement
-        element.innerHTML = ' Adedd<i class="fa-solid fa-check"></i>'
+        element.innerHTML = ' Adedd<i class="fa-solid d-block fa-check"></i>'
       })
     }
     else if (Array.from(event.srcElement.classList).includes("text-danger") == true) {
@@ -88,11 +82,10 @@ export class HomeComponent {
           document.querySelector("strong")?.classList.remove("animate")
         }, 2000);
         const element: HTMLElement = document.querySelector('strong small') as HTMLElement
-        element.innerHTML = "deleted<i class='fa-solid fa-check'></i>"
+        element.innerHTML = "deleted<i class='fa-solid fa-check d-block'></i>"
       })
     }
   }
-
   addToCart(pId: string) {
     this.loadingCenter = true
     return this._CartService.addToCart(pId).subscribe({
@@ -100,35 +93,17 @@ export class HomeComponent {
         this.loadingCenter = false
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
         document.querySelector("strong")?.classList.add("animate")
-        console.log("hi");
         setTimeout(() => {
           document.querySelector("strong")?.classList.remove("animate")
         }, 2000);
+        const element: HTMLElement = document.querySelector('strong small') as HTMLElement
+        element.innerHTML = ' Adedd<i class="fa-solid d-block fa-check"></i>'
       },
       error: () => {
         this.loadingCenter = false
       }
     })
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 

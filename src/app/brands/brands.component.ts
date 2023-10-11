@@ -2,30 +2,18 @@ import { Component } from '@angular/core';
 import { BrandsService } from '../brands.service';
 import { products } from '../product';
 
-
-
-
-
 @Component({
   selector: 'app-brands',
   templateUrl: './brands.component.html',
   styleUrls: ['./brands.component.scss']
 })
 export class BrandsComponent {
-
-
   allBrands!:products[]
   loading: boolean = true
   loaded: boolean = false
-
-
-  constructor(private _BrandsService: BrandsService) {
-
-  }
-
+  constructor(private _BrandsService: BrandsService) {}
   ngOnInit(): void {
     localStorage.setItem("currentPage", "/brands")
-
     this._BrandsService.getAllBrands().subscribe({
       next: (res) => {
         console.log(res.data.length);
@@ -38,9 +26,7 @@ export class BrandsComponent {
         this.loading = true
       }
     })
-
   }
-
 }
 
 

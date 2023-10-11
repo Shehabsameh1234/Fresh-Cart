@@ -1,21 +1,11 @@
 <section class="container p-5 mt-5">
-
-
-
-
-
-
     <form [formGroup]="chekOutForm" (ngSubmit)="paySubmit(cartId,chekOutForm)">
         <label for="">details</label>
         <input class="form-control" type="text" formControlName="details">
         <div class="bg-success text-white p-2 rounded mt-1"
-        *ngIf="chekOutForm.get('details')?.errors&& chekOutForm.get('details')?.touched">
-        <p *ngIf="chekOutForm.get('details')?.errors?.['required']">input is required</p>
-
-    </div>
-
-
-
+            *ngIf="chekOutForm.get('details')?.errors&& chekOutForm.get('details')?.touched">
+            <p *ngIf="chekOutForm.get('details')?.errors?.['required']">input is required</p>
+        </div>
         <label for="">phone</label>
         <input class="form-control" type="number" formControlName="phone">
         <div class="bg-success text-white p-2 rounded mt-1"
@@ -23,21 +13,12 @@
             <p *ngIf="chekOutForm.get('phone')?.errors?.['required']">input is required</p>
             <p *ngIf="chekOutForm.get('phone')?.errors?.['pattern']">Ex : 01147218434 </p>
         </div>
-
         <label for="">city</label>
         <input class="form-control" type="text" formControlName="city">
         <div class="bg-success text-white p-2 rounded mt-1"
             *ngIf="chekOutForm.get('city')?.errors && chekOutForm.get('city')?.touched">
             <p *ngIf="chekOutForm.get('city')?.errors?.['required']">input is required</p>
-
         </div>
         <button [disabled]="chekOutForm.invalid" class="btn btn-success mt-3">pay</button>
     </form>
-
-
-
-
-
-
-
 </section>

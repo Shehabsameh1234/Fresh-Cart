@@ -7,16 +7,12 @@ import { products } from '../product';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent {
-
   allCategories!: products[]
   loading: boolean = true
   loaded: boolean = false
-  constructor(private _CategoriesService: CategoriesService) {
-
-  }
+  constructor(private _CategoriesService: CategoriesService) {}
   ngOnInit(): void {
     localStorage.setItem("currentPage", "/categories")
-
     this._CategoriesService.getAllCategories().subscribe({
       next: (res) => {
         console.log(res.data[0].image);
@@ -29,8 +25,5 @@ export class CategoriesComponent {
         this.loading = true
       }
     })
-
-
-
   }
 }

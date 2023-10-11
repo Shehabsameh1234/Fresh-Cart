@@ -12,23 +12,16 @@ declare let $: any
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
-
   productId!: string;
   productImg0!: []
   productImg1!: []
   productImg2!: []
   product!: products
   loadingCenter: boolean = false;
-
-
-
   constructor(private _ActivatedRoute: ActivatedRoute, private _CartService: CartService, private _ProductsService: ProductsService, private _WishListService: WishListService) {
-
-
     $(document).ready(function () {
       $(".owl-carousel").owlCarousel(
         {
-
           responsive: {
             0: {
               items: 1
@@ -44,7 +37,6 @@ export class ProductsComponent {
       );
     });
   }
-
   ngOnInit(): void {
     this.productId = this._ActivatedRoute.snapshot.params['id']
     localStorage.setItem("currentPage", `/products/${this.productId}`)
@@ -58,11 +50,8 @@ export class ProductsComponent {
           this.productImg2 = this.productImg1
         }
       },
-
     })
   }
-
-
   wishListAddAndRemove(pId: string, event: any) {
     if (event.target.style.color == "red") {
       this._WishListService.deleteItemWishList(pId).subscribe({
@@ -80,19 +69,13 @@ export class ProductsComponent {
       })
     }
   }
-
-
   addToCart(pId: string) {
     this.loadingCenter = true
-
     return this._CartService.addToCart(pId).subscribe({
       next: (res) => {
-       
-  
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
         this.loadingCenter = false
-        
-      }, error: () => { this.loadingCenter = false}
+      }, error: () => { this.loadingCenter = false }
     })
 
   }

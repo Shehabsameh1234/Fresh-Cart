@@ -1,9 +1,8 @@
 a {
     color: #777;
-
     img {
         width: 1.9rem;
-        margin-bottom: 5px;
+       margin-bottom: 5px;
     }
 
     i {
@@ -11,7 +10,6 @@ a {
     }
 
 }
-
 li {
     i.fa-cart-shopping {
         margin-top: 6px;
@@ -43,18 +41,12 @@ li{
 }
 }
 
-
 @media  (min-width: 0)and (max-width: 991px) {
-
-
     li{
-      
         i + span{
            bottom:5px;
            left:50%;
-   
     }
     }
-
 }
 

@@ -1,18 +1,11 @@
 import { Component } from '@angular/core';
 import { CartService } from '../cart.service';
-
-
-
-
-
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
-
 
   allProductCart!: any
   loading: boolean = true
@@ -22,15 +15,12 @@ export class CartComponent {
   numOfCartItems!: number
   countItem!: number
   cartId!: string
-
   constructor(private _CartService: CartService) { }
-
   ngOnInit(): void {
     localStorage.setItem("currentPage", "/cart")
     this._CartService.getAllCart().subscribe({
       next: (res) => {
         this.cartId = res.data._id
-
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
         this.numOfCartItems = res.numOfCartItems
         this.totalCartPrice = res.data.totalCartPrice
@@ -49,7 +39,6 @@ export class CartComponent {
       }
     })
   }
-
   clearCart() {
     this._CartService.cleartAllCart().subscribe(
       (res) => {
@@ -59,16 +48,26 @@ export class CartComponent {
         this.allProductCart = null
         this.emptyCart = true
         this._CartService.numberOfCartItems.next(0)
+        document.querySelector("strong")?.classList.add("animate")
+        setTimeout(function () {
+          document.querySelector("strong")?.classList.remove("animate")
+        }, 2000);
+        const element: HTMLElement = document.querySelector('strong small') as HTMLElement
+        element.innerHTML = "deleted<i class='fa-solid fa-check d-block'></i>"
       })
   }
-
-
   clearOneItem(pId: string) {
     this._CartService.cleartSpecItem(pId).subscribe({
       next: (res) => {
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
         this.allProductCart = res.data.products
         this.totalCartPrice = res.data.totalCartPrice
+        document.querySelector("strong")?.classList.add("animate")
+        setTimeout(function () {
+          document.querySelector("strong")?.classList.remove("animate")
+        }, 2000);
+        const element: HTMLElement = document.querySelector('strong small') as HTMLElement
+        element.innerHTML = "deleted<i class='fa-solid fa-check d-block'></i>"
         if (res.numOfCartItems == 0) {
           this.allProductCart = null
           this.emptyCart = true
@@ -77,8 +76,6 @@ export class CartComponent {
       },
     })
   }
-
-
   updateQuantity(pCount: number, pId: string) {
     this._CartService.updateCart(pCount, pId).subscribe({
       next: (res) => {
@@ -88,6 +85,12 @@ export class CartComponent {
               this.allProductCart = res.data.products
               this.totalCartPrice = res.data.totalCartPrice
               this._CartService.numberOfCartItems.next(res.numOfCartItems)
+              document.querySelector("strong")?.classList.add("animate")
+              setTimeout(function () {
+                document.querySelector("strong")?.classList.remove("animate")
+              }, 2000);
+              const element: HTMLElement = document.querySelector('strong small') as HTMLElement
+              element.innerHTML = "deleted<i class='fa-solid fa-check d-block'></i>"
               if (res.numOfCartItems == 0) {
                 this.allProductCart = null
                 this.emptyCart = true

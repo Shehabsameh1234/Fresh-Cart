@@ -23,7 +23,6 @@ const routes: Routes = [
   {path:"logIn",component:LogInComponent,data:{animation: 'logIn'}},
   {path:"register",component:RegisterComponent,data:{animation: 'register'}},
   {path:"forgetPassword",component:ForgetPasswordComponent,data:{animation: 'forgetPassword'}},
-  {path:"**",canActivate:[routeguardGuard],component:HomeComponent,data:{animation: 'home'}},
 ];
 
 @NgModule({

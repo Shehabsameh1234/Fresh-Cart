@@ -1,12 +1,9 @@
 <section class="container p-5 mt-5">
-
     <!-- loading spiner -->
     <div *ngIf="loadingCenter" id="loading" class="justify-content-center align-items-center">
         <span class="loader"></span>
     </div>
     <!-- loading spiner -->
-
-
     <div class="owl-carousel owl-theme ">
         <div class="item">
             <img class="rounded img-cursoul" src="assets/img/books.jpg" alt="books">
@@ -37,11 +34,10 @@
             <h5 class="text-center">mobiles</h5>
         </div>
         <div class="item">
-            <img class="rounded img-cursoul " src="../../assets/img/laptop.jpg" alt="Electronics">
+            <img class="rounded img-cursoul " src="assets/img/laptop.jpg" alt="Electronics">
             <h5 class="text-center">Electronics</h5>
         </div>
     </div>
-
     <div class="my-3">
         <input type="text" class="form-control" placeholder="search by title Ex:Woman Shawl" [(ngModel)]="userWord">
     </div>
@@ -56,7 +52,8 @@
 
     <div *ngIf="loaded">
         <div class="row text-center">
-            <div class="col-md-6 col-12 col-lg-3 my-4  " *ngFor="let product of allProducts | search:userWord ,let i=index">
+            <div class="col-md-6 col-12 col-lg-3 my-4  "
+                *ngFor="let product of allProducts | search:userWord ,let i=index">
                 <div class="shadow px-2 py-4 p-md-4 p-lg-4 ">
                     <div class="cursor-pointer">
                         <div [routerLink]="['/products',product._id]">
@@ -66,7 +63,7 @@
                         </div>
                         <div class="d-flex justify-content-between mt-2">
                             <p class=" text-start">{{product.price}}EGP</p>
-                            <p class="   "><i [id]="product._id" (click)="wishListAddAndRemove(product._id,$event,i)" 
+                            <p class="   "><i [id]="product._id" (click)="wishListAddAndRemove(product._id,$event,i)"
                                     class="fa-solid font-size cursor-pointer fa-heart"></i></p>
 
                             <p class=" text-start">{{product.ratingsAverage}}<i
@@ -79,13 +76,7 @@
             </div>
         </div>
     </div>
-
-
-
     <strong class="shadow">
         <small class="text-center"></small>
-       </strong>
-
-
-
+    </strong>
 </section>
