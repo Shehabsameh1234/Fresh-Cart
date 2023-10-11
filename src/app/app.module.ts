@@ -19,6 +19,7 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { SearchPipe } from './search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   declarations: [
     AppComponent,

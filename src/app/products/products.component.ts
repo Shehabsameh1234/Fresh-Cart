@@ -4,6 +4,7 @@ import { ProductsService } from '../products.service';
 import { products } from '../product';
 import { WishListService } from '../wish-list.service';
 import { CartService } from '../cart.service';
+import { Title } from '@angular/platform-browser';
 
 declare let $: any
 @Component({
@@ -18,7 +19,8 @@ export class ProductsComponent {
   productImg2!: []
   product!: products
   loadingCenter: boolean = false;
-  constructor(private _ActivatedRoute: ActivatedRoute, private _CartService: CartService, private _ProductsService: ProductsService, private _WishListService: WishListService) {
+  constructor(private titleService:Title,private _ActivatedRoute: ActivatedRoute, private _CartService: CartService, private _ProductsService: ProductsService, private _WishListService: WishListService) {
+    titleService.setTitle("Product Details")
     $(document).ready(function () {
       $(".owl-carousel").owlCarousel(
         {

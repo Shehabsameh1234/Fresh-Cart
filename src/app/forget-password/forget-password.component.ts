@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-forget-password',
@@ -12,7 +13,7 @@ export class ForgetPasswordComponent {
   loading: boolean = false;
   isSendEmail: boolean = true
   isSendCode: boolean = true
-  constructor(private _AuthService: AuthService, private _Router: Router) { }
+  constructor(private titleService:Title,private _AuthService: AuthService, private _Router: Router) {   titleService.setTitle("Forget Password ")}
   sendEmailForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
   })

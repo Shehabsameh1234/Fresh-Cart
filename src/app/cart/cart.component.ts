@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from '../cart.service';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -15,7 +16,7 @@ export class CartComponent {
   numOfCartItems!: number
   countItem!: number
   cartId!: string
-  constructor(private _CartService: CartService) { }
+  constructor(private titleService:Title,private _CartService: CartService) {  titleService.setTitle("Cart") }
   ngOnInit(): void {
     localStorage.setItem("currentPage", "/cart")
     this._CartService.getAllCart().subscribe({

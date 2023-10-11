@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class LogInComponent  {
   errorMessage!: string;
   loading: boolean = false;
-  constructor(private _AuthService: AuthService, private _Router: Router) { }
+  constructor(private titleService:Title,private _AuthService: AuthService, private _Router: Router) {  titleService.setTitle("Log In ") }
   logInForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)]),

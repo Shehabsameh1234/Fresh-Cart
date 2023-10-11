@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +12,7 @@ export class RegisterComponent {
   didnotmatch!: string;
   errorMessage!: string;
   loading: boolean = false;
-  constructor(private _AuthService: AuthService, private _Router: Router) { }
+  constructor(private titleService:Title,private _AuthService: AuthService, private _Router: Router) {  titleService.setTitle("Register ") }
   registerForm: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(10)]),
     email: new FormControl(null, [Validators.required, Validators.email]),

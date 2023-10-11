@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { products } from '../product';
 import { WishListService } from '../wish-list.service';
 import { CartService } from '../cart.service';
+import { Title } from '@angular/platform-browser';
 declare let $: any
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,13 +22,14 @@ export class HomeComponent {
   heart: boolean = true
   loadingCenter: boolean = false;
   userWord: string = ""
-  constructor(private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService, private _CartService: CartService) {
+  constructor(private titleService: Title, private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService, private _CartService: CartService) {
+    titleService.setTitle("Home ")
     $(document).ready(function () {
       $(".owl-carousel").owlCarousel(
         {
           loop: true,
           margin: 0,
-          
+
           responsive: {
             0: {
               items: 1

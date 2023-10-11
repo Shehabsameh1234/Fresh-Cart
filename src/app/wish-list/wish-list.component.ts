@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WishListService } from '../wish-list.service';
 import { products } from '../product';
 import { CartService } from '../cart.service';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-wish-list',
   templateUrl: './wish-list.component.html',
@@ -13,7 +14,8 @@ export class WishListComponent {
   loaded: boolean = false
   loadingCenter: boolean = false;
   allProductsWishList!: products[]
-  constructor(private _WishListService: WishListService, private _CartService: CartService) {
+  constructor(private titleService:Title,private _WishListService: WishListService, private _CartService: CartService) {
+    titleService.setTitle("Wish List")
   }
   ngOnInit(): void {
     localStorage.setItem("currentPage", "/wishList")

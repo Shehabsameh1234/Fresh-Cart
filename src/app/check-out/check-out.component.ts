@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CheckOutService } from '../check-out.service';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.component.html',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CheckOutComponent {
   cartId!: string
-  constructor(private _CheckOutService: CheckOutService, private _ActivatedRoute: ActivatedRoute) { }
+  constructor(private titleService:Title,private _CheckOutService: CheckOutService, private _ActivatedRoute: ActivatedRoute) {   titleService.setTitle("Check Out")}
   ngOnInit(): void {
     this.cartId = this._ActivatedRoute.snapshot.params['id']
     localStorage.setItem("currentPage", `/chekout/${this.cartId}`)

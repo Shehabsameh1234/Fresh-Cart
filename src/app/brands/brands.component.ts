@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BrandsService } from '../brands.service';
 import { products } from '../product';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-brands',
@@ -11,7 +12,9 @@ export class BrandsComponent {
   allBrands!:products[]
   loading: boolean = true
   loaded: boolean = false
-  constructor(private _BrandsService: BrandsService) {}
+  constructor(private titleService:Title,private _BrandsService: BrandsService) {
+    titleService.setTitle("Brands")
+  }
   ngOnInit(): void {
     localStorage.setItem("currentPage", "/brands")
     this._BrandsService.getAllBrands().subscribe({
