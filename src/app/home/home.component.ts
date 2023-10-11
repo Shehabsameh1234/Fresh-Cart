@@ -23,7 +23,7 @@ export class HomeComponent {
   heart: boolean = true
   loadingCenter: boolean = false;
   userWord: string = ""
-  
+
   constructor(private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService, private _CartService: CartService) {
     $(document).ready(function () {
       $(".owl-carousel").owlCarousel(
@@ -71,21 +71,39 @@ export class HomeComponent {
     if (Array.from(event.srcElement.classList).includes("text-danger") == false) {
       this._WishListService.addToWishList(pId).subscribe(() => {
         document.querySelectorAll(".fa-heart")[i].classList.add("text-danger")
+        document.querySelector("strong")?.classList.add("animate")
+        console.log("hi");
+        setTimeout(() => {
+          document.querySelector("strong")?.classList.remove("animate")
+        }, 2000);
+        const element: HTMLElement = document.querySelector('strong small') as HTMLElement
+        element.innerHTML = ' Adedd<i class="fa-solid fa-check"></i>'
       })
     }
     else if (Array.from(event.srcElement.classList).includes("text-danger") == true) {
       this._WishListService.deleteItemWishList(pId).subscribe(() => {
         document.querySelectorAll(".fa-heart")[i].classList.remove("text-danger")
+        document.querySelector("strong")?.classList.add("animate")
+        setTimeout(function () {
+          document.querySelector("strong")?.classList.remove("animate")
+        }, 2000);
+        const element: HTMLElement = document.querySelector('strong small') as HTMLElement
+        element.innerHTML = "deleted<i class='fa-solid fa-check'></i>"
       })
     }
   }
+
   addToCart(pId: string) {
     this.loadingCenter = true
     return this._CartService.addToCart(pId).subscribe({
       next: (res) => {
-        console.log(res.numOfCartItems);
         this.loadingCenter = false
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
+        document.querySelector("strong")?.classList.add("animate")
+        console.log("hi");
+        setTimeout(() => {
+          document.querySelector("strong")?.classList.remove("animate")
+        }, 2000);
       },
       error: () => {
         this.loadingCenter = false
