@@ -22,9 +22,9 @@
             <div>
                 <h3>{{product.title}}</h3>
                 <p class="text-muted">{{product.description}}</p>
-                <div class="d-flex justify-content-between mt-3">
+                <div class="d-flex justify-content-between my-3"  >
                     <span>{{product.price}} EGP</span>
-                    <span class=" text-start"><i (click)="wishListAddAndRemove(product._id,$event)"
+                    <span class=" text-start" ><i [id]="product._id" (click)="wishListAddAndRemove(product._id,$event)"
                             class="fa-solid font-size cursor-pointer fa-heart"></i></span>
                     <span>{{product.ratingsAverage}} <i class="fa-solid fa-star text-warning"></i></span>
                 </div>
@@ -32,4 +32,7 @@
             </div>
         </div>
     </div>
+    <strong class="shadow">
+        <small class="text-center"></small>
+    </strong>
 </section>

@@ -20,10 +20,12 @@ const routes: Routes = [
   {path:"categories",canActivate:[routeguardGuard],component:CategoriesComponent,data: {animation: 'categories'}},
   {path:"brands",canActivate:[routeguardGuard],component:BrandsComponent, data:{animation: 'brands'}},
   {path:"chekout/:id",canActivate:[routeguardGuard],component:CheckOutComponent,data:{animation: 'chekout/:id'}},
+  {path:"products/:id",canActivate:[routeguardGuard],component:ProductsComponent,data:{animation: '"products/:id'}},
   {path:"paymentSuccessful",canActivate:[routeguardGuard],component:PaysucpaymentSuccessfulComponent,data:{animation: 'paymentSuccessful'}},
   {path:"logIn",component:LogInComponent,data:{animation: 'logIn'}},
   {path:"register",component:RegisterComponent,data:{animation: 'register'}},
   {path:"forgetPassword",component:ForgetPasswordComponent,data:{animation: 'forgetPassword'}},
+  
 ];
 
 @NgModule({

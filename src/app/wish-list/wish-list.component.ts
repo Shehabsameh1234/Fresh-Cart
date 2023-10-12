@@ -61,7 +61,7 @@ export class WishListComponent {
       next: (res) => {
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
         this.loadingCenter = false
-        this.deletItem(pId)
+      
         document.querySelector("strong")?.classList.add("animate")
         setTimeout(() => {
           document.querySelector("strong")?.classList.remove("animate")

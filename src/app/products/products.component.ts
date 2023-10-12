@@ -19,7 +19,7 @@ export class ProductsComponent {
   productImg2!: []
   product!: products
   loadingCenter: boolean = false;
-  constructor(private titleService:Title,private _ActivatedRoute: ActivatedRoute, private _CartService: CartService, private _ProductsService: ProductsService, private _WishListService: WishListService) {
+  constructor(private titleService: Title, private _ActivatedRoute: ActivatedRoute, private _CartService: CartService, private _ProductsService: ProductsService, private _WishListService: WishListService) {
     titleService.setTitle("Product Details")
     $(document).ready(function () {
       $(".owl-carousel").owlCarousel(
@@ -51,41 +51,57 @@ export class ProductsComponent {
         if (this.productImg2 == null) {
           this.productImg2 = this.productImg1
         }
+        this._WishListService.getUserWishList().subscribe({
+          next: (res) => {
+            for (let i = 0; i < res.data.length; i++) {
+              document.getElementById(res.data[i]._id)?.classList.add("text-danger")
+            }
+          }
+        })
       },
     })
   }
   wishListAddAndRemove(pId: string, event: any) {
-    if (event.target.style.color == "red") {
-      this._WishListService.deleteItemWishList(pId).subscribe({
-        next: (res) => {
-          alert("deleted")
-          event.target.style.color = "black";
-        }
+    if (Array.from(event.srcElement.classList).includes("text-danger") == false) {
+      this._WishListService.addToWishList(pId).subscribe(() => {
+        document.querySelector(".fa-heart")?.classList.add("text-danger")
+        document.querySelector("strong")?.classList.add("animate")
+        console.log("hi");
+        setTimeout(() => {
+          document.querySelector("strong")?.classList.remove("animate")
+        }, 2000);
+        const element: HTMLElement = document.querySelector('strong small') as HTMLElement
+        element.innerHTML = ' Adedd<i class="fa-solid d-block fa-check"></i>'
       })
-    } else {
-      this._WishListService.addToWishList(pId).subscribe({
-        next: (res) => {
-          alert("added")
-          event.target.style.color = "red";
-        }
+    }
+    else if (Array.from(event.srcElement.classList).includes("text-danger") == true) {
+      this._WishListService.deleteItemWishList(pId).subscribe(() => {
+        document.querySelector(".fa-heart")?.classList.remove("text-danger")
+        document.querySelector("strong")?.classList.add("animate")
+        setTimeout(function () {
+          document.querySelector("strong")?.classList.remove("animate")
+        }, 2000);
+        const element: HTMLElement = document.querySelector('strong small') as HTMLElement
+        element.innerHTML = "deleted<i class='fa-solid fa-check d-block'></i>"
       })
     }
   }
+
   addToCart(pId: string) {
     this.loadingCenter = true
     return this._CartService.addToCart(pId).subscribe({
       next: (res) => {
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
         this.loadingCenter = false
+        document.querySelector("strong")?.classList.add("animate")
+        setTimeout(() => {
+          document.querySelector("strong")?.classList.remove("animate")
+        }, 2000);
+        const element: HTMLElement = document.querySelector('strong small') as HTMLElement
+        element.innerHTML = ' Adedd<i class="fa-solid d-block fa-check"></i>'
       }, error: () => { this.loadingCenter = false }
     })
-
   }
-
-
-
-
-
 }
 
 
