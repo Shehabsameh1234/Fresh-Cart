@@ -13,6 +13,7 @@ export class ForgetPasswordComponent {
   loading: boolean = false;
   isSendEmail: boolean = true
   isSendCode: boolean = true
+
   constructor(private titleService:Title,private _AuthService: AuthService, private _Router: Router) {   titleService.setTitle("Forget Password ")}
   sendEmailForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
@@ -42,7 +43,7 @@ export class ForgetPasswordComponent {
     this.loading = true
     this._AuthService.sendForgetcode(codeForm.value).subscribe({
       next: (res) => {
-        console.log(res)
+       
         this.loading = false
         this.errorMessage = ""
         this.isSendCode = false
@@ -58,12 +59,13 @@ export class ForgetPasswordComponent {
   resetPasswordSubmit(resetPass: FormGroup) {
     this.loading = true
     this._AuthService.resetPassword(resetPass.value).subscribe({
-      next: (token) => {
-        console.log(token)
-        localStorage.setItem("userToken", JSON.stringify(token).slice(10));
+      next: (res:any) => {
+        console.log(res.token);
+        localStorage.setItem("userToken", res.token);
         this._AuthService.saveDataToken()
         this._Router.navigate(['/home'])
         this._AuthService.saveDataToken()
+        location.reload();
       },
       error: (error) => {
         console.log(error)
