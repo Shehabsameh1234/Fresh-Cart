@@ -34,13 +34,13 @@ export class CartComponent {
         }
         if(res.data.products==null || res.data.products==undefined){
           this.isWrong=true
-
         }
       },
       error: (error) => {
         this.loading = false
         this._CartService.numberOfCartItems.next(0)
-        this.isWrong=true
+        this.emptyCart = true
+       
       }
     })
   }
