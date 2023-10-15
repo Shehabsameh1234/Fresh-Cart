@@ -13,20 +13,24 @@ export class CategoriesComponent {
   loading: boolean = true
   loaded: boolean = false
   categoryName!: string
+  isWrong: boolean = false
 
   constructor(private titleService: Title, private _CategoriesService: CategoriesService) { titleService.setTitle("Categories") }
   ngOnInit(): void {
-    localStorage.setItem("currentPage", "/categories")
+
     this._CategoriesService.getAllCategories().subscribe({
       next: (res) => {
         console.log(res.data[0].image);
         this.allCategories = res.data
         this.loaded = true
         this.loading = false
+        if (res.data == null || res.data == undefined) {
+          this.isWrong=true
+        }
       },
-      error: (error) => {
-        console.log(error);
-        this.loading = true
+      error: () => {
+        this.loading = false
+        this.isWrong=true
       }
     })
   }
@@ -35,11 +39,11 @@ export class CategoriesComponent {
       next: (res) => {
         this.categoryName = event.srcElement.id + " subategories"
         this.subCategories = res.data
-       if(res.data[0]==undefined){
-        this.categoryName=" "
-       }  
+        if (res.data[0] == undefined) {
+          this.categoryName = " "
+        }
       },
-      error: () => {}
+      error: () => { }
     })
   }
 

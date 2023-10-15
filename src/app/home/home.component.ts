@@ -21,6 +21,7 @@ export class HomeComponent {
   intersection: string[] = []
   heart: boolean = true
   loadingCenter: boolean = false;
+  isWrong:boolean=false
   userWord: string = ""
   constructor(private titleService: Title, private _Router: Router, private _ProductsService: ProductsService, private _WishListService: WishListService, private _CartService: CartService) {
     titleService.setTitle("Home ")
@@ -29,7 +30,6 @@ export class HomeComponent {
         {
           loop: true,
           margin: 0,
-
           responsive: {
             0: {
               items: 1
@@ -46,12 +46,14 @@ export class HomeComponent {
     });
   }
   ngOnInit(): void {
-    localStorage.setItem("currentPage", "/home")
     this._ProductsService.getAllProducts().subscribe({
       next: (res) => {
         this.allProducts = res.data
         this.loaded = true
         this.loading = false
+        if(res.data==null ||res.data==undefined){
+          this.isWrong=true
+        }
         this._WishListService.getUserWishList().subscribe({
           next: (res) => {
             for (let i = 0; i < res.data.length; i++) {
@@ -60,8 +62,9 @@ export class HomeComponent {
           }
         })
       },
-      error: (error) => {
-        this.loading = true
+      error: () => {
+        this.loading = false
+        this.isWrong=true
       }
     })
   }

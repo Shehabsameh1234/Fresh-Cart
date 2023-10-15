@@ -1,6 +1,7 @@
 <section class="container p-5 mt-5">
     <h2 class="text-success text-center">my cart list</h2>
     <h3 *ngIf="emptyCart" class="text-danger text-center mt-5">your cart is empty</h3>
+    <h4 *ngIf="isWrong" class="text-danger text-center mt-5">something went wrong please reload the page</h4>
 
     <div *ngIf="loading" class="row text-center">
         <div *ngFor="let _ of [].constructor(5)" class="col-12 hhh  ">

@@ -16,7 +16,6 @@ export class AuthService {
     }
     else{
       this.saveDataToken()
-      this._Router.navigate([localStorage.getItem("currentPage")])
     }
   }
   sendRegister(_registerData: registerData): Observable<any> {

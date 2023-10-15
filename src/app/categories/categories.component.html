@@ -1,4 +1,7 @@
 <section class="container p-5 mt-5">
+
+    <h4 *ngIf="isWrong" class="text-danger text-center mt-5">something went wrong please reload the page</h4>
+
     <div *ngIf="loading" class="row text-center">
         <div *ngFor="let _ of [].constructor(10)" class="col-md-6 col-12 col-lg-4 my-4  ">
             <div class="px-2 py-4 p-md-4 p-lg-4 ">

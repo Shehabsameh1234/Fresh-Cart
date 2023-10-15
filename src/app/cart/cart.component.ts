@@ -16,9 +16,9 @@ export class CartComponent {
   numOfCartItems!: number
   countItem!: number
   cartId!: string
+  isWrong:boolean=false
   constructor(private titleService:Title,private _CartService: CartService) {  titleService.setTitle("Cart") }
   ngOnInit(): void {
-    localStorage.setItem("currentPage", "/cart")
     this._CartService.getAllCart().subscribe({
       next: (res) => {
         this.cartId = res.data._id
@@ -32,11 +32,15 @@ export class CartComponent {
           this.emptyCart = true
           this.allProductCart = null
         }
+        if(res.data.products==null || res.data.products==undefined){
+          this.isWrong=true
+
+        }
       },
       error: (error) => {
         this.loading = false
-        this.emptyCart = true
         this._CartService.numberOfCartItems.next(0)
+        this.isWrong=true
       }
     })
   }

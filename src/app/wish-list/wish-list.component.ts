@@ -14,11 +14,11 @@ export class WishListComponent {
   loaded: boolean = false
   loadingCenter: boolean = false;
   allProductsWishList!: products[]
-  constructor(private titleService:Title,private _WishListService: WishListService, private _CartService: CartService) {
+  isWrong: boolean = false
+  constructor(private titleService: Title, private _WishListService: WishListService, private _CartService: CartService) {
     titleService.setTitle("Wish List")
   }
   ngOnInit(): void {
-    localStorage.setItem("currentPage", "/wishList")
     this._WishListService.getUserWishList().subscribe({
       next: (res) => {
         console.log(res.data);
@@ -28,10 +28,14 @@ export class WishListComponent {
         if (res.data.length == 0) {
           this.emptyList = true
         }
+        if (res.data == null || res.data == undefined) {
+          this.isWrong = true
+        }
       },
       error: (error) => {
         console.log(error);
-        this.loading = true
+        this.loading = false
+        this.isWrong = true
       }
     })
   }
@@ -61,7 +65,7 @@ export class WishListComponent {
       next: (res) => {
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
         this.loadingCenter = false
-      
+
         document.querySelector("strong")?.classList.add("animate")
         setTimeout(() => {
           document.querySelector("strong")?.classList.remove("animate")

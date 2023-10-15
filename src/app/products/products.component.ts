@@ -41,7 +41,7 @@ export class ProductsComponent {
   }
   ngOnInit(): void {
     this.productId = this._ActivatedRoute.snapshot.params['id']
-    localStorage.setItem("currentPage", `/products/${this.productId}`)
+    
     this._ProductsService.getSpecProducts(this.productId).subscribe({
       next: (res) => {
         this.product = res.data
