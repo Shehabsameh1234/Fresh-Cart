@@ -76,5 +76,9 @@ export class WishListComponent {
         this.loadingCenter = false
       }
     })
+  };
+  
+  reload(){
+    location.reload()
   }
 }

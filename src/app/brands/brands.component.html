@@ -1,8 +1,12 @@
 <section class="container p-5 mt-5">
-    <h2 class="text-center text-success" >all brands</h2>
+    <h2  *ngIf="!isWrong" class="text-center text-success" >all brands</h2>
 
 
-    <h4 *ngIf="isWrong" class="text-danger text-center mt-5">something went wrong please reload the page</h4>
+    <div *ngIf="isWrong" class="text-center mt-5 ">
+        <i class="fa-solid fa-circle-exclamation fa-beat" style="color:#5cb85c;"></i>
+        <h3 class="text-success my-4">oops! somthing went wrong</h3>
+        <h5 (click)="reload()" class="text-Inverse cursor-pointer">reload page</h5>
+    </div>
 
     <div *ngIf="loading" class="row text-center">
         <div  *ngFor="let _ of [].constructor(40)" class="col-md-6 col-12 col-lg-4 my-4  ">

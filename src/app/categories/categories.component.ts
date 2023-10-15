@@ -45,6 +45,10 @@ export class CategoriesComponent {
       },
       error: () => { }
     })
+  };
+
+  reload(){
+    location.reload()
   }
 
 

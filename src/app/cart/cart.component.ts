@@ -16,8 +16,8 @@ export class CartComponent {
   numOfCartItems!: number
   countItem!: number
   cartId!: string
-  isWrong:boolean=false
-  constructor(private titleService:Title,private _CartService: CartService) {  titleService.setTitle("Cart") }
+  isWrong: boolean = false
+  constructor(private titleService: Title, private _CartService: CartService) { titleService.setTitle("Cart") }
   ngOnInit(): void {
     this._CartService.getAllCart().subscribe({
       next: (res) => {
@@ -32,15 +32,14 @@ export class CartComponent {
           this.emptyCart = true
           this.allProductCart = null
         }
-        if(res.data.products==null || res.data.products==undefined){
-          this.isWrong=true
+        if (res.data.products == null || res.data.products == undefined) {
+          this.isWrong = true
         }
       },
       error: (error) => {
         this.loading = false
         this._CartService.numberOfCartItems.next(0)
-        this.emptyCart = true
-       
+        this.isWrong = true
       }
     })
   }
@@ -51,7 +50,7 @@ export class CartComponent {
         this.loaded = true
         this.loading = false
         this.allProductCart = null
-        this.emptyCart = true
+        this.emptyCart=true
         this._CartService.numberOfCartItems.next(0)
         document.querySelector("strong")?.classList.add("animate")
         setTimeout(function () {
@@ -110,6 +109,10 @@ export class CartComponent {
         }
       },
     })
+  };
+
+  reload() {
+    location.reload()
   }
 }
 

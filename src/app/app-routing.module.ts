@@ -12,6 +12,7 @@ import { routeguardGuard } from './routeguard.guard';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { PaysucpaymentSuccessfulComponent } from './paysucpayment-successful/paysucpayment-successful.component';
+import { logInGuard } from './log-in.guard';
 
 const routes: Routes = [
   {path:"home",canActivate:[routeguardGuard],component:HomeComponent,data: {animation: 'Home'}},
@@ -22,9 +23,9 @@ const routes: Routes = [
   {path:"chekout/:id",canActivate:[routeguardGuard],component:CheckOutComponent,data:{animation: 'chekout/:id'}},
   {path:"products/:id",canActivate:[routeguardGuard],component:ProductsComponent,data:{animation: '"products/:id'}},
   {path:"allorders",canActivate:[routeguardGuard],component:PaysucpaymentSuccessfulComponent,data:{animation: 'paymentSuccessful'}},
-  {path:"logIn",component:LogInComponent,data:{animation: 'logIn'}},
-  {path:"register",component:RegisterComponent,data:{animation: 'register'}},
-  {path:"forgetPassword",component:ForgetPasswordComponent,data:{animation: 'forgetPassword'}},
+  {path:"logIn",canActivate:[logInGuard],component:LogInComponent,data:{animation: 'logIn'}},
+  {path:"register",canActivate:[logInGuard],component:RegisterComponent,data:{animation: 'register'}},
+  {path:"forgetPassword",canActivate:[logInGuard],component:ForgetPasswordComponent,data:{animation: 'forgetPassword'}},
   {path:"**",canActivate:[routeguardGuard],component:HomeComponent,data: {animation: 'Home'}},
 
   

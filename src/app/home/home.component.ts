@@ -110,6 +110,10 @@ export class HomeComponent {
         this.loadingCenter = false
       }
     })
+  };
+
+  reload(){
+    location.reload()
   }
 }
 

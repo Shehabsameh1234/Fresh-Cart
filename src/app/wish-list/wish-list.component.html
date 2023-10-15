@@ -4,7 +4,7 @@
         <span class="loader"></span>
     </div>
     <!-- loading spiner -->
-    <h2 class="text-success text-center">my wish list</h2>
+    <h2 *ngIf="!isWrong" class="text-success text-center">my wish list</h2>
     <div *ngIf="loading" class="row text-center">
         <div *ngFor="let _ of [].constructor(5)" class="col-12   ">
             <div class="px-2 py-4 p-md-4 p-lg-4 ">
@@ -13,7 +13,13 @@
         </div>
     </div>
     <h3 *ngIf="emptyList" class="text-danger text-center mt-5">your list is empty</h3>
-    <h4 *ngIf="isWrong" class="text-danger text-center mt-5">something went wrong please reload the page</h4>
+
+    <div *ngIf="isWrong" class="text-center mt-5 ">
+        <i class="fa-solid fa-circle-exclamation fa-beat" style="color:#5cb85c;"></i>
+        <h3 class="text-success my-4">oops! somthing went wrong</h3>
+        <h5 (click)="reload()" class="text-Inverse cursor-pointer">reload page</h5>
+    </div>
+
     <div *ngIf="loaded">
         <div *ngFor="let p of allProductsWishList" class="row shadow p-3 mt-4 align-items-center text-center ">
             <div class="col-md-2 col-12">

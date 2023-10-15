@@ -33,6 +33,10 @@ this.isWrong=true
         this.isWrong=true
       }
     })
+  };
+
+  reload(){
+    location.reload()
   }
 }
 
