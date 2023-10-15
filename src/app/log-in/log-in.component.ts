@@ -25,7 +25,7 @@ export class LogInComponent  {
         this.loading = false
         localStorage.setItem("userToken", res.token)
         this._AuthService.saveDataToken()
-        location.reload();
+       
       },
       error: (error) => {
         this.errorMessage = error.error.message

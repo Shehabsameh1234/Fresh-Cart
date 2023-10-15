@@ -13,7 +13,6 @@ export class CheckOutComponent {
   constructor(private titleService:Title,private _CheckOutService: CheckOutService, private _ActivatedRoute: ActivatedRoute) {   titleService.setTitle("Check Out")}
   ngOnInit(): void {
     this.cartId = this._ActivatedRoute.snapshot.params['id']
-   
   }
   chekOutForm: FormGroup = new FormGroup({
     details: new FormControl(null, [Validators.required]),
@@ -24,7 +23,6 @@ export class CheckOutComponent {
     this._CheckOutService.pay(cartId, chekOutForm.value).subscribe({
       next: (res) => {
         window.location.href = res.session.url
-
       }
     })
   }
