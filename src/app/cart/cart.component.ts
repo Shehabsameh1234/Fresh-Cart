@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
-
+  //variables
   allProductCart!: any
   loading: boolean = true
   loaded: boolean = false
@@ -17,8 +17,11 @@ export class CartComponent {
   countItem!: number
   cartId!: string
   isWrong: boolean = false
+  //variables
+
   constructor(private titleService: Title, private _CartService: CartService) { titleService.setTitle("Cart") }
   ngOnInit(): void {
+    //get all cart
     this._CartService.getAllCart().subscribe({
       next: (res) => {
         this.cartId = res.data._id
@@ -28,6 +31,7 @@ export class CartComponent {
         this.allProductCart = res.data.products
         this.loaded = true
         this.loading = false
+        //handle the case if no products or null
         if (res.data.products.length == 0) {
           this.emptyCart = true
           this.allProductCart = null
@@ -37,12 +41,14 @@ export class CartComponent {
         }
       },
       error: (error) => {
+        //handle the error 
         this.loading = false
         this._CartService.numberOfCartItems.next(0)
         this.isWrong = true
       }
     })
   }
+  //clear all cart
   clearCart() {
     this._CartService.cleartAllCart().subscribe(
       (res) => {
@@ -50,7 +56,7 @@ export class CartComponent {
         this.loaded = true
         this.loading = false
         this.allProductCart = null
-        this.emptyCart=true
+        this.emptyCart = true
         this._CartService.numberOfCartItems.next(0)
         document.querySelector("strong")?.classList.add("animate")
         setTimeout(function () {
@@ -60,6 +66,7 @@ export class CartComponent {
         element.innerHTML = "deleted<i class='fa-solid fa-check d-block'></i>"
       })
   }
+  //clear one item from the cart
   clearOneItem(pId: string) {
     this._CartService.cleartSpecItem(pId).subscribe({
       next: (res) => {
@@ -72,6 +79,7 @@ export class CartComponent {
         }, 2000);
         const element: HTMLElement = document.querySelector('strong small') as HTMLElement
         element.innerHTML = "deleted<i class='fa-solid fa-check d-block'></i>"
+        //show message if no proudcts
         if (res.numOfCartItems == 0) {
           this.allProductCart = null
           this.emptyCart = true
@@ -80,9 +88,11 @@ export class CartComponent {
       },
     })
   }
+  //icrease and decrease the quantity
   updateQuantity(pCount: number, pId: string) {
     this._CartService.updateCart(pCount, pId).subscribe({
       next: (res) => {
+        //clear items if count ==0
         if (pCount == 0) {
           this._CartService.cleartSpecItem(pId).subscribe({
             next: (res) => {
@@ -110,7 +120,7 @@ export class CartComponent {
       },
     })
   };
-
+  //reload the page by user in there is error
   reload() {
     location.reload()
   }

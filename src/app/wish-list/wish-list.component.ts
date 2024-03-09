@@ -9,16 +9,19 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./wish-list.component.scss']
 })
 export class WishListComponent {
+  //vars
   emptyList: boolean = false
   loading: boolean = true
   loaded: boolean = false
   loadingCenter: boolean = false;
   allProductsWishList!: products[]
   isWrong: boolean = false
+  //vars
   constructor(private titleService: Title, private _WishListService: WishListService, private _CartService: CartService) {
     titleService.setTitle("Wish List")
   }
   ngOnInit(): void {
+    //get user wishList to diplay it in tha page
     this._WishListService.getUserWishList().subscribe({
       next: (res) => {
         console.log(res.data);
@@ -33,12 +36,13 @@ export class WishListComponent {
         }
       },
       error: (error) => {
-        console.log(error);
+        //handle the error
         this.loading = false
         this.isWrong = true
       }
     })
   }
+  //delete product from wishList
   deletItem(pId: string) {
     this._WishListService.deleteItemWishList(pId).subscribe({
       next: (res) => {
@@ -59,13 +63,13 @@ export class WishListComponent {
       }
     })
   }
+  //add to cart
   addToCart(pId: string) {
     this.loadingCenter = true
     return this._CartService.addToCart(pId).subscribe({
       next: (res) => {
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
         this.loadingCenter = false
-
         document.querySelector("strong")?.classList.add("animate")
         setTimeout(() => {
           document.querySelector("strong")?.classList.remove("animate")
@@ -77,7 +81,7 @@ export class WishListComponent {
       }
     })
   };
-  
+  //reload the page by user in errors 
   reload(){
     location.reload()
   }

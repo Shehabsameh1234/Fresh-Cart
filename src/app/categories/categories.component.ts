@@ -8,16 +8,20 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent {
+  //variables
   allCategories!: products[]
   subCategories!: products[]
   loading: boolean = true
   loaded: boolean = false
   categoryName!: string
   isWrong: boolean = false
+  //variables
+
 
   constructor(private titleService: Title, private _CategoriesService: CategoriesService) { titleService.setTitle("Categories") }
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    //get all categories
     this._CategoriesService.getAllCategories().subscribe({
       next: (res) => {
         console.log(res.data[0].image);
@@ -29,11 +33,13 @@ export class CategoriesComponent {
         }
       },
       error: () => {
+        //handle the error if exist
         this.loading = false
         this.isWrong=true
       }
     })
   }
+  //get sub category
   getSpecCategory(categoryId: string, event: any) {
     this._CategoriesService.getSpecCategory(categoryId).subscribe({
       next: (res) => {
@@ -43,10 +49,9 @@ export class CategoriesComponent {
           this.categoryName = " "
         }
       },
-      error: () => { }
     })
   };
-
+//reload the page by user in errors
   reload(){
     location.reload()
   }

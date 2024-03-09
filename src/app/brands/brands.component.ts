@@ -9,33 +9,38 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./brands.component.scss']
 })
 export class BrandsComponent {
-  allBrands!:products[]
+  //variables
+  allBrands!: products[]
   loading: boolean = true
   loaded: boolean = false
-  isWrong:boolean=false
-  constructor(private titleService:Title,private _BrandsService: BrandsService) {
+  isWrong: boolean = false
+  //variables
+
+  constructor(private titleService: Title, private _BrandsService: BrandsService) {
     titleService.setTitle("Brands")
   }
+
   ngOnInit(): void {
+    //get all brands
     this._BrandsService.getAllBrands().subscribe({
       next: (res) => {
         console.log(res.data.length);
-        this.allBrands=res.data
+        this.allBrands = res.data
         this.loaded = true
         this.loading = false
-        if(res.data==null ||res.data==undefined){
-this.isWrong=true
+        if (res.data == null || res.data == undefined) {
+          this.isWrong = true
         }
       },
       error: (error) => {
-      
+        //handle the error
         this.loading = false
-        this.isWrong=true
+        this.isWrong = true
       }
     })
   };
-
-  reload(){
+//refresh the page in errors
+  reload() {
     location.reload()
   }
 }

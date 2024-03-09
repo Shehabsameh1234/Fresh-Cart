@@ -9,14 +9,17 @@ import { CartService } from '../cart.service';
 })
 export class NavBarComponent {
   numberOfItems!:number
-  constructor(private _AuthService: AuthService, private _Router: Router,private _CartService:CartService) { }
   isLogIn: boolean = false
+  constructor(private _AuthService: AuthService, private _Router: Router,private _CartService:CartService) { }
+ 
   ngOnInit(): void {
     this._CartService.getAllCart().subscribe({
       next:(res)=>{
+        //get the numbers of items in cart
         this._CartService.numberOfCartItems.next(res.numOfCartItems)
       },
       error:()=>{
+        //if no items put 0
         this._CartService.numberOfCartItems.next(0)
       }
     })
@@ -33,8 +36,10 @@ export class NavBarComponent {
     })
   }
   logOut() {
+    //in log out remove the token from localStorage
     localStorage.removeItem("userToken") 
     this._AuthService.saveDataToken()
+    //send the user to log in page to log in again
     this._Router.navigate(["/logIn"])
   }
 }

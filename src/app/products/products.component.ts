@@ -13,14 +13,17 @@ declare let $: any
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
+  //vars
   productId!: string;
   productImg0!: []
   productImg1!: []
   productImg2!: []
   product!: products
   loadingCenter: boolean = false;
+  //vars
   constructor(private titleService: Title, private _ActivatedRoute: ActivatedRoute, private _CartService: CartService, private _ProductsService: ProductsService, private _WishListService: WishListService) {
     titleService.setTitle("Product Details")
+    //using the owlCarsouel library
     $(document).ready(function () {
       $(".owl-carousel").owlCarousel(
         {
@@ -41,7 +44,7 @@ export class ProductsComponent {
   }
   ngOnInit(): void {
     this.productId = this._ActivatedRoute.snapshot.params['id']
-    
+    //display the product details and photos alone
     this._ProductsService.getSpecProducts(this.productId).subscribe({
       next: (res) => {
         this.product = res.data
@@ -51,6 +54,7 @@ export class ProductsComponent {
         if (this.productImg2 == null) {
           this.productImg2 = this.productImg1
         }
+        //chek if the produc in wishList 
         this._WishListService.getUserWishList().subscribe({
           next: (res) => {
             for (let i = 0; i < res.data.length; i++) {
@@ -61,6 +65,7 @@ export class ProductsComponent {
       },
     })
   }
+  //add and remove  from wishList
   wishListAddAndRemove(pId: string, event: any) {
     if (Array.from(event.srcElement.classList).includes("text-danger") == false) {
       this._WishListService.addToWishList(pId).subscribe(() => {
@@ -86,7 +91,7 @@ export class ProductsComponent {
       })
     }
   }
-
+//add to cart
   addToCart(pId: string) {
     this.loadingCenter = true
     return this._CartService.addToCart(pId).subscribe({
