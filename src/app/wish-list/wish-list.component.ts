@@ -24,7 +24,6 @@ export class WishListComponent {
     //get user wishList to diplay it in tha page
     this._WishListService.getUserWishList().subscribe({
       next: (res) => {
-        console.log(res.data);
         this.loaded = true
         this.loading = false
         this.allProductsWishList = res.data
