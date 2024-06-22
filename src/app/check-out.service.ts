@@ -13,7 +13,7 @@ export class CheckOutService {
     let bodyPay: any = {
       shippingAddress: formvalue
     }
-    return this._HttpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${cId}?url=https://shehabsameh1234.github.io/ecommerce/`, bodyPay,{
+    return this._HttpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${cId}?url=https://shehabsameh1234.github.io/Fresh-Cart/`, bodyPay,{
       headers:this.header
     })
   }
