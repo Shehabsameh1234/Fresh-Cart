@@ -51,8 +51,7 @@ export class CartComponent {
   //clear all cart
   clearCart() {
     this._CartService.cleartAllCart().subscribe(
-      (res) => {
-        console.log(res);
+      () => {
         this.loaded = true
         this.loading = false
         this.allProductCart = null

@@ -24,7 +24,6 @@ export class BrandsComponent {
     //get all brands
     this._BrandsService.getAllBrands().subscribe({
       next: (res) => {
-        console.log(res.data.length);
         this.allBrands = res.data
         this.loaded = true
         this.loading = false
@@ -32,7 +31,7 @@ export class BrandsComponent {
           this.isWrong = true
         }
       },
-      error: (error) => {
+      error: () => {
         //handle the error
         this.loading = false
         this.isWrong = true

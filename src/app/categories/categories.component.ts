@@ -24,7 +24,6 @@ export class CategoriesComponent {
     //get all categories
     this._CategoriesService.getAllCategories().subscribe({
       next: (res) => {
-        console.log(res.data[0].image);
         this.allCategories = res.data
         this.loaded = true
         this.loading = false
