@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { productId, count } from './object'
+import { productId, count } from '../object'
 import { BehaviorSubject, Observable } from 'rxjs'
 @Injectable({
   providedIn: 'root'

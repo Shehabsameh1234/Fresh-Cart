@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../Services/auth.service';
 import { Router } from '@angular/router';
-import { CartService } from '../cart.service';
+import { CartService } from '../Services/cart.service';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',

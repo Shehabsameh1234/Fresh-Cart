@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from '../products.service';
+import { ProductsService } from '../Services/products.service';
 import { products } from '../product';
-import { WishListService } from '../wish-list.service';
-import { CartService } from '../cart.service';
+import { WishListService } from '../Services/wish-list.service';
+import { CartService } from '../Services/cart.service';
 import { Title } from '@angular/platform-browser';
 
 declare let $: any

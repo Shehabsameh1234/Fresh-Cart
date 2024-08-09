@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BrandsService } from '../brands.service';
+import { BrandsService } from '../Services/brands.service';
 import { products } from '../product';
 import { Title } from '@angular/platform-browser';
 

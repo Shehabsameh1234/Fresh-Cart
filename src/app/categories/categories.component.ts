@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CategoriesService } from '../categories.service';
+import { CategoriesService } from '../Services/categories.service';
 import { products } from '../product';
 import { Title } from '@angular/platform-browser';
 @Component({

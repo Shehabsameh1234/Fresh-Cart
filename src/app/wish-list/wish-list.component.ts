@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { WishListService } from '../wish-list.service';
+import { WishListService } from '../Services/wish-list.service';
 import { products } from '../product';
-import { CartService } from '../cart.service';
+import { CartService } from '../Services/cart.service';
 import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-wish-list',
