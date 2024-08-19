@@ -9,6 +9,7 @@ This is an Angular 16 application featuring products, wish lists, brands, cart f
 - Brands: check  brands.
 - Cart: Add items to the cart and proceed to checkout.
 - Stripe Payment: Secure payment processing through Stripe.
+- Login/Register: User authentication for accessing personalized features.
 
 
 ## Technologies Used
